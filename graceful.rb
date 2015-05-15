@@ -13,18 +13,17 @@ end
 class Node
   attr_accessor :children
 
-  def initialize(options =  {})
+  def initialize(options = {})
     @children = options[:children] || []
   end
 
   def dup
-    duped_children = children.map { |child| child.dup }
-    duped = Node.new(children: duped_children)
+    Node.new(children: children.map(&:dup))
   end
 end
 
 class Tree
-  attr_accessor :root_node
+  attr_accessor :root
 
   def self.build_trees(num_nodes)
     root_nodes = []
@@ -32,44 +31,46 @@ class Tree
       root_nodes << Node.new
     else
       (num_nodes - 1).partitions.each do |partition|
-        unless partition.empty?
-          root_nodes_for_partition = [Node.new]
-          partition.each do |num_sub_nodes|
-            sub_trees = Tree.build_trees(num_sub_nodes)
-            new_root_nodes_for_partition = []
-
-            sub_trees.each do |sub_tree|
-              root_nodes_for_partition.each do |root|
-                new_root = root.dup
-                new_root.children << sub_tree.root_node
-                new_root_nodes_for_partition << new_root
-              end
-            end
-
-            root_nodes_for_partition = new_root_nodes_for_partition
-          end
-
-          root_nodes += root_nodes_for_partition
-        end
+        root_nodes += Tree.partition_nodes(partition) unless partition.empty?
       end
     end
 
-    return root_nodes.map { |node| Tree.new(root_node: node) }
+    root_nodes.map { |node| Tree.new(root: node) }
+  end
+
+  def self.partition_nodes(partition)
+    root_nodes_for_partition = []
+    partition.each do |num_sub_nodes|
+      sub_trees = Tree.build_trees(num_sub_nodes)
+      new_root_nodes_for_partition = []
+
+      sub_trees.each do |sub_tree|
+        root_nodes_for_partition.each do |root|
+          new_root = root.dup
+          new_root.children << sub_tree.root
+          new_root_nodes_for_partition << new_root
+        end
+      end
+
+      root_nodes_for_partition = new_root_nodes_for_partition
+    end
+
+    root_nodes_for_partition
   end
 
   def initialize(options)
-    @root_node = options[:root_node]
+    @root = options[:root]
   end
 
   def render
-    nodes = [@root_node, 'new_line']
+    nodes = [@root, 'new_line']
     until nodes.empty?
       node = nodes.shift
       if node == 'new_line'
         puts
         nodes << 'new_line' unless nodes.empty?
       elsif node.nil?
-        print '    '
+        print '   '
       else
         print '·'
         node.children.each do |child|
