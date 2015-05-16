@@ -101,7 +101,7 @@ end
 
 
 trees = Tree.build_trees(5)
-diagram do
+digraph do
   trees.each_with_index do |tree, i|
     tree.list_of_edges.each do |(from, to)|
       edge "#{i}_#{from}", "#{i}_#{to}"
