@@ -1,8 +1,9 @@
 require 'colorize'
 require 'graph'
+require_relative 'trees'
 
 
-class SymmetricStar
+class SymmetricStarLabeling
 
   attr_reader :m, :n
 
@@ -42,7 +43,7 @@ class SymmetricStar
 end
 
 
-star = SymmetricStar.new(6, 9)
+star = SymmetricStarLabeling.new(6, 9)
 star.print_vlabels
 star.print_elabels(:blue)
 puts "#{3}th branch, #{4}th vertex is #{star.vlabel(3, 4)}."
