@@ -1,4 +1,6 @@
 require 'colorize'
+require 'graph'
+
 
 class SymmetricStar
 
