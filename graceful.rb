@@ -39,23 +39,27 @@ class Tree
   end
 
   def self.partition_nodes(partition)
-    root_nodes_for_partition = []
+    root_nodes = [Node.new]
     partition.each do |num_sub_nodes|
       sub_trees = Tree.build_trees(num_sub_nodes)
-      new_root_nodes_for_partition = []
+      new_subrootnodes = []
 
       sub_trees.each do |sub_tree|
-        root_nodes_for_partition.each do |root|
-          new_root = root.dup
-          new_root.children << sub_tree.root
-          new_root_nodes_for_partition << new_root
-        end
+        new_subrootnodes += self.subnodes(sub_tree, root_nodes)
       end
 
-      root_nodes_for_partition = new_root_nodes_for_partition
+      root_nodes = new_subrootnodes
     end
 
-    root_nodes_for_partition
+    root_nodes
+  end
+
+  def self.subnodes(tree, nodes)
+    nodes.map do |node|
+      new_node = node.dup
+      new_node.children << tree.root
+      new_node
+    end
   end
 
   def initialize(options)
@@ -63,20 +67,14 @@ class Tree
   end
 
   def render
-    nodes = [@root, 'new_line']
+    nodes = [@root]
     until nodes.empty?
       node = nodes.shift
-      if node == 'new_line'
+      if node.is_a?(String)
         puts
-        nodes << 'new_line' unless nodes.empty?
-      elsif node.nil?
-        print '   '
       else
-        print '·'
-        node.children.each do |child|
-          nodes << child
-        end
-        nodes << nil
+        print "·"
+        nodes += node.children + ["new_line"]
       end
     end
   end
