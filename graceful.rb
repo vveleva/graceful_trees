@@ -1,4 +1,5 @@
 require 'byebug'
+require 'graph'
 
 
 class Fixnum
@@ -66,16 +67,46 @@ class Tree
     @root = options[:root]
   end
 
-  def render
+  def list_of_edges
+    edges = []
+    counter = 0
     nodes = [@root]
-    until nodes.empty?
+    while nodes.any?
+      node = nodes.shift
+      if node.children.any?
+        len = node.children.length
+        edges += (1..len).map { |i| [counter, counter + i] }
+        counter += len
+        nodes += node.children
+      end
+    end
+
+    edges
+  end
+
+  def render
+    nodes = [@root, "new_line"]
+    while nodes.any?
       node = nodes.shift
       if node.is_a?(String)
         puts
       else
-        print "·"
+        space = " " * (node.children.length / 2)
+        print space + "·"
         nodes += node.children + ["new_line"]
       end
     end
   end
+end
+
+
+trees = Tree.build_trees(5)
+diagram do
+  trees.each_with_index do |tree, i|
+    tree.list_of_edges.each do |(from, to)|
+      edge "#{i}_#{from}", "#{i}_#{to}"
+    end
+  end
+
+  save "simple_example", "png"
 end
