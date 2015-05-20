@@ -12,10 +12,11 @@ class Fixnum
 end
 
 class Node
-  attr_accessor :children
+  attr_accessor :children, :label
 
   def initialize(options = {})
     @children = options[:children] || []
+    @label = options[:label] || 0
   end
 
   def dup
@@ -64,7 +65,7 @@ class Tree
   end
 
   def initialize(options)
-    @root = options[:root]
+    @root = options[:root] || Node.new
   end
 
   def list_of_edges
@@ -97,16 +98,51 @@ class Tree
       end
     end
   end
-end
 
-
-trees = Tree.build_trees(5)
-digraph do
-  trees.each_with_index do |tree, i|
-    tree.list_of_edges.each do |(from, to)|
-      edge "#{i}_#{from}", "#{i}_#{to}"
+  def all_nodes
+    queue = [root]
+    nodes = [root]
+    while queue.any?
+      node = queue.shift
+      queue += node.children
+      nodes += node.children
     end
+
+    nodes
   end
 
-  save "simple_example", "png"
+  def list_of_edges
+    edges = []
+    nodes = [root]
+    while nodes.any?
+      node = nodes.shift
+      node_children = node.children
+      if node_children.any?
+        edges += node_children.map { |child| [node.label, child.label] }
+        nodes += node_children
+      end
+    end
+
+    edges
+  end
+
+  def is_graceful?
+    vlabels = all_nodes.map(&:label)
+    range = (0..vlabels.length).to_a
+    elabels = list_of_edges.map { |(i, j)| (i - j).abs }
+
+    vlabels.sort == range && elabels.sort == range[1..-1]
+  end
 end
+
+
+# trees = Tree.build_trees(5)
+# digraph do
+#   trees.each_with_index do |tree, i|
+#     tree.list_of_edges.each do |(from, to)|
+#       edge "#{i}_#{from}", "#{i}_#{to}"
+#     end
+#   end
+#
+#   save "simple_example", "png"
+# end
