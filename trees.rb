@@ -135,5 +135,5 @@ digraph do
     end
   end
 
-  save "trees", "png"
+  save "graph_images/trees_on_#{trees.length}_vertices", "png"
 end

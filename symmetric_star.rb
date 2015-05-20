@@ -45,5 +45,5 @@ digraph do
     edge from, to
   end
 
-  save "star", "png"
+  save "graph_images/#{star.legs}#{star.depth}_graceful_star", "png"
 end

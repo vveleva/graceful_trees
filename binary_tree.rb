@@ -47,5 +47,5 @@ digraph do
     edge from, to
   end
 
-  save "btree", "png"
+  save "graph_images/btree_depth#{btree.depth}", "png"
 end
