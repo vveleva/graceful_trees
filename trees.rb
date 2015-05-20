@@ -1,5 +1,7 @@
 require 'byebug'
 require 'graph'
+require 'graphviz'
+require 'graphviz/dsl'
 
 
 class Fixnum
@@ -24,7 +26,7 @@ class Node
   end
 
   def inspect
-    @label
+    label
   end
 end
 
@@ -44,16 +46,32 @@ class Tree
     root_nodes.map { |node| Tree.new(root: node) }
   end
 
-  def self.render_trees(num_nodes)
-    trees = Tree.build_trees(num_nodes)
-    digraph do
-      trees.each_with_index do |tree, i|
-        tree.list_of_edges.each do |(from, to)|
-          edge "#{i}.#{from}", "#{i}.#{to}"
-        end
-      end
+  def render
+    GraphViz.graph( :G ) do |graph|
+      graphviz_to_render(graph, "")
+      graph.output png: "graph_images/all_#{self.all_nodes.length}v_trees.png"
+    end
+  end
 
-      save "graph_images/all_#{num_nodes}v_trees", "png"
+  def graphviz_to_render(graph, num)
+    graph.node[color: :lightblue, style: :filled]
+    graph.edge[color: :gray, fontcolor: :gray, arrowhead: :vee]
+    self.all_nodes.each do |node|
+      graph.add_nodes("#{num}.#{node.label}", label: node.label)
+    end
+    self.list_of_edges.each do |(from, to)|
+      graph.add_edges(
+        "#{num}.#{from}", "#{num}.#{to}", label: " #{(from - to).abs}"
+      )
+    end
+  end
+
+  def self.render_trees(num_nodes)
+    GraphViz.graph( :G ) do |graph|
+      trees = Tree.build_trees(num_nodes)
+      trees.each_with_index { |tree, i| tree.graphviz_to_render(graph, i) }
+
+      graph.output png: "graph_images/all_#{num_nodes}v_trees.png"
     end
   end
 
@@ -84,20 +102,6 @@ class Tree
   def initialize(options)
     @root = options[:root] || Node.new
     label_nodes
-  end
-
-  def render
-    nodes = [root, "new_line"]
-    while nodes.any?
-      node = nodes.shift
-      if node.is_a?(String)
-        puts
-      else
-        space = " " * (node.children.length / 2)
-        print space + "·"
-        nodes += node.children + ["new_line"]
-      end
-    end
   end
 
   def all_nodes
@@ -156,5 +160,5 @@ class Tree
 end
 
 
-# p Tree.build_trees(5)
-Tree.render_trees(5)
+Tree.build_trees(6)[16].render
+# Tree.render_trees(5)
