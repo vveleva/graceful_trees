@@ -16,7 +16,7 @@ class SymmetricStar < Tree
     tree
   end
 
-  def label_all_nodes
+  def label_nodes
     "already labeled"
   end
 

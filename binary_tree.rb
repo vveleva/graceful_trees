@@ -24,7 +24,7 @@ class BinaryTree < Tree
   def initialize(options)
     super(options)
     @depth = options[:depth]
-    label_all_nodes
+    label_nodes
   end
 end
 
@@ -36,7 +36,7 @@ p btree
 # btree = BinaryTree.build(depth: 3)
 # btree.all_nodes.map { |node| node.children.length } == [2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0]
 p btree.list_of_edges
-btree.label_all_nodes
+btree.label_nodes
 p btree.list_of_edges
 
 # vlabels = 6

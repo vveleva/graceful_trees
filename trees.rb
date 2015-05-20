@@ -22,6 +22,10 @@ class Node
   def dup
     Node.new(children: children.map(&:dup))
   end
+
+  def inspect
+    @label
+  end
 end
 
 class Tree
@@ -79,7 +83,7 @@ class Tree
 
   def initialize(options)
     @root = options[:root] || Node.new
-    label_all_nodes
+    label_nodes
   end
 
   def render
@@ -108,7 +112,7 @@ class Tree
     nodes
   end
 
-  def label_all_nodes
+  def label_nodes
     all_nodes.each_with_index { |node, idx| node.label = idx }
   end
 
@@ -134,6 +138,23 @@ class Tree
 
     vlabels.sort == range && elabels.sort == range[1..-1]
   end
+
+  def inspect
+    inspect_node root
+  end
+
+  def inspect_node(node)
+    nodes = [node.label]
+    return nodes unless node.children.any?
+
+    node.children.each do |child|
+      nodes << inspect_node(child)
+    end
+
+    nodes
+  end
 end
 
-Tree.render_trees(5)
+
+p Tree.build_trees(5)
+# Tree.render_trees(5)
