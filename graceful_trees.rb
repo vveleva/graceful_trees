@@ -43,7 +43,7 @@ class SymmetricStarLabeling
 end
 
 
-star = SymmetricStarLabeling.new(6, 9)
-star.print_vlabels
-star.print_elabels(:blue)
-puts "#{3}th branch, #{4}th vertex is #{star.vlabel(3, 4)}."
+# star = SymmetricStarLabeling.new(6, 9)
+# star.print_vlabels
+# star.print_elabels(:blue)
+# puts "#{3}th branch, #{4}th vertex is #{star.vlabel(3, 4)}."

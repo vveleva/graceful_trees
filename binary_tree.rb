@@ -1,5 +1,6 @@
-require 'trees.rb'
-require 'graceful_trees.rb'
+require_relative 'trees'
+require_relative 'graceful_trees'
+require 'graph'
 
 class BinaryTree < Tree
   attr_reader :depth
@@ -23,6 +24,7 @@ class BinaryTree < Tree
   def initialize(options)
     super(options)
     @depth = options[:depth]
+    label_all_nodes
   end
 end
 
@@ -30,8 +32,20 @@ end
 btree = BinaryTree.build(depth: 3)
 
 p btree
-p btree.all_nodes.map { |node| node.children.length }
-p btree.list_of_edges.length
+# rspec test number of children
+# btree = BinaryTree.build(depth: 3)
+# btree.all_nodes.map { |node| node.children.length } == [2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0]
+p btree.list_of_edges
+btree.label_all_nodes
+p btree.list_of_edges
 
-vlabels
-p (0...vlabels).to_a.permutation(vlabels).to_a
+# vlabels = 6
+# p (0...vlabels).to_a.permutation(vlabels).to_a
+
+digraph do
+  btree.list_of_edges.each do |(from, to)|
+    edge from, to
+  end
+
+  save "btree", "png"
+end

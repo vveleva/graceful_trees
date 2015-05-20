@@ -1,5 +1,6 @@
-require 'trees.rb'
-require 'graceful_trees.rb'
+require_relative 'trees'
+require_relative 'graceful_trees'
+require 'colorize'
 
 
 class SymmetricStar < Tree
