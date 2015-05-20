@@ -40,6 +40,19 @@ class Tree
     root_nodes.map { |node| Tree.new(root: node) }
   end
 
+  def self.render_trees(num_nodes)
+    trees = Tree.build_trees(num_nodes)
+    digraph do
+      trees.each_with_index do |tree, i|
+        tree.list_of_edges.each do |(from, to)|
+          edge "#{i}.#{from}", "#{i}.#{to}"
+        end
+      end
+
+      save "graph_images/all_#{trees.length}v_trees", "png"
+    end
+  end
+
   def self.partition_nodes(partition)
     root_nodes = [Node.new]
     partition.each do |num_sub_nodes|
@@ -96,9 +109,7 @@ class Tree
   end
 
   def label_all_nodes
-    all_nodes.each_with_index do |node, idx|
-      node.label = idx
-    end
+    all_nodes.each_with_index { |node, idx| node.label = idx }
   end
 
   def list_of_edges
@@ -118,22 +129,11 @@ class Tree
 
   def is_graceful?
     vlabels = all_nodes.map(&:label)
-    range = (0..vlabels.length).to_a
     elabels = list_of_edges.map { |(i, j)| (i - j).abs }
+    range = (0..vlabels.length).to_a
 
     vlabels.sort == range && elabels.sort == range[1..-1]
   end
 end
 
-
-trees = Tree.build_trees(5)
-
-digraph do
-  trees.each_with_index do |tree, i|
-    tree.list_of_edges.each do |(from, to)|
-      edge "#{i}_#{from}", "#{i}_#{to}"
-    end
-  end
-
-  save "graph_images/trees_on_#{trees.length}_vertices", "png"
-end
+Tree.render_trees(5)

@@ -16,13 +16,14 @@ class SymmetricStar < Tree
     tree
   end
 
+  def label_all_nodes
+    "already labeled"
+  end
+
   def self.build_path(labels)
     parent = start_node = Node.new(label: labels.shift)
-    # start_node.label = labels.shift
-    # parent = start_node
     labels.each do |label|
-      temp = Node.new
-      temp.label = label
+      temp = Node.new(label: label)
       parent.children << temp
       parent = temp
     end
@@ -39,11 +40,11 @@ end
 
 
 star = SymmetricStar.build(legs: 5, depth: 4)
-
-digraph do
-  star.list_of_edges.each do |(from, to)|
-    edge from, to
-  end
-
-  save "graph_images/#{star.legs}#{star.depth}_graceful_star", "png"
-end
+#
+# digraph do
+#   star.list_of_edges.each do |(from, to)|
+#     edge from, to
+#   end
+#
+#   save "graph_images/#{star.legs}#{star.depth}_graceful_star", "png"
+# end
