@@ -53,7 +53,7 @@ class Tree
         end
       end
 
-      save "graph_images/all_#{trees.length}v_trees", "png"
+      save "graph_images/all_#{num_nodes}v_trees", "png"
     end
   end
 
@@ -156,5 +156,5 @@ class Tree
 end
 
 
-p Tree.build_trees(5)
-# Tree.render_trees(5)
+# p Tree.build_trees(5)
+Tree.render_trees(5)
