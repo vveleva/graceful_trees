@@ -66,27 +66,11 @@ class Tree
 
   def initialize(options)
     @root = options[:root] || Node.new
-  end
-
-  def list_of_edges
-    edges = []
-    counter = 0
-    nodes = [@root]
-    while nodes.any?
-      node = nodes.shift
-      if node.children.any?
-        len = node.children.length
-        edges += (1..len).map { |i| [counter, counter + i] }
-        counter += len
-        nodes += node.children
-      end
-    end
-
-    edges
+    label_all_nodes
   end
 
   def render
-    nodes = [@root, "new_line"]
+    nodes = [root, "new_line"]
     while nodes.any?
       node = nodes.shift
       if node.is_a?(String)
@@ -111,15 +95,21 @@ class Tree
     nodes
   end
 
+  def label_all_nodes
+    all_nodes.each_with_index do |node, idx|
+      node.label = idx
+    end
+  end
+
   def list_of_edges
     edges = []
     nodes = [root]
     while nodes.any?
       node = nodes.shift
-      node_children = node.children
-      if node_children.any?
-        edges += node_children.map { |child| [node.label, child.label] }
-        nodes += node_children
+      children = node.children
+      if children.any?
+        edges += children.map { |child| [node.label, child.label] }
+        nodes += children
       end
     end
 
@@ -136,13 +126,14 @@ class Tree
 end
 
 
-# trees = Tree.build_trees(5)
-# digraph do
-#   trees.each_with_index do |tree, i|
-#     tree.list_of_edges.each do |(from, to)|
-#       edge "#{i}_#{from}", "#{i}_#{to}"
-#     end
-#   end
-#
-#   save "simple_example", "png"
-# end
+trees = Tree.build_trees(5)
+
+digraph do
+  trees.each_with_index do |tree, i|
+    tree.list_of_edges.each do |(from, to)|
+      edge "#{i}_#{from}", "#{i}_#{to}"
+    end
+  end
+
+  save "trees", "png"
+end
