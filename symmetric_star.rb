@@ -38,5 +38,12 @@ class SymmetricStar < Tree
 end
 
 
-star = SymmetricStar.build(legs: 2, depth: 4)
-p star
+star = SymmetricStar.build(legs: 5, depth: 4)
+
+digraph do
+  star.list_of_edges.each do |(from, to)|
+    edge from, to
+  end
+
+  save "star", "png"
+end
