@@ -50,6 +50,7 @@ class Tree
     filename = options[:name] || "all_#{self.all_nodes.length}v_trees"
     GraphViz.graph( :G ) do |graph|
       graphviz_to_render(graph, "")
+      graph[:fontname] = "Helvetica"
       graph[:label] = graph_label
       graph.output png: "graph_images/#{filename}.png"
     end
@@ -57,16 +58,16 @@ class Tree
 
   def graphviz_to_render(graph, num)
     graph.node[
-      color: :tomato,
-      # fontcolor: :tomato,
+      color: :tomato3,
+      # fontcolor: :white,
       # style: :filled,
       width: 0.5,
       height: 0.5,
       fontname: "Helvetica",
       fontsize: 12]
     graph.edge[
-      color: :gray,
-      fontcolor: :gray,
+      color: :yellowgreen,
+      fontcolor: :yellowgreen,
       fontname: "Helvetica",
       fontsize: 12]
     self.all_nodes.each do |node|

@@ -1,5 +1,5 @@
 require_relative 'trees'
-require_relative 'graceful_trees'
+require_relative 'symmetric_star_labeling'
 require 'colorize'
 
 
