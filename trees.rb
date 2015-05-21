@@ -58,9 +58,7 @@ class Tree
 
   def graphviz_to_render(graph, num)
     graph.node[
-      color: :tomato3,
-      # fontcolor: :white,
-      # style: :filled,
+      color: :tomato4,
       width: 0.5,
       height: 0.5,
       fontname: "Helvetica",
