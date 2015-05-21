@@ -47,10 +47,11 @@ class Tree
 
   def render(options = {})
     graph_label = options[:label] || ""
+    filename = options[:name] || "all_#{self.all_nodes.length}v_trees"
     GraphViz.graph( :G ) do |graph|
       graphviz_to_render(graph, "")
       graph[:label] = graph_label
-      graph.output png: "graph_images/all_#{self.all_nodes.length}v_trees.png"
+      graph.output png: "graph_images/#{filename}.png"
     end
   end
 

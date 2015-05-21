@@ -13,6 +13,10 @@ class BinaryTree < Tree
     tree
   end
 
+  def render
+    super(name: "btree_depth_#{depth}")
+  end
+
   def self.build_btree(node, depth)
     return if depth == 0
 

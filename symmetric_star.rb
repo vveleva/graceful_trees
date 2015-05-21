@@ -21,7 +21,10 @@ class SymmetricStar < Tree
   end
 
   def render
-    super(label: "\nGraceful labeling")
+    super(
+      label: "\nGraceful labeling",
+      name: "#{legs}#{depth}_symmetric_star"
+    )
   end
 
   def self.build_path(labels)
