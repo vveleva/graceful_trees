@@ -20,6 +20,10 @@ class SymmetricStar < Tree
     "already labeled"
   end
 
+  def render
+    super(label: "\nGraceful labeling")
+  end
+
   def self.build_path(labels)
     parent = start_node = Node.new(label: labels.shift)
     labels.each do |label|
@@ -37,14 +41,3 @@ class SymmetricStar < Tree
     @depth = options[:depth]
   end
 end
-
-
-star = SymmetricStar.build(legs: 5, depth: 4)
-#
-# digraph do
-#   star.list_of_edges.each do |(from, to)|
-#     edge from, to
-#   end
-#
-#   save "graph_images/#{star.legs}#{star.depth}_graceful_star", "png"
-# end

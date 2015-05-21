@@ -1,4 +1,3 @@
-require 'byebug'
 require 'graph'
 require 'graphviz'
 require 'graphviz/dsl'
@@ -46,16 +45,29 @@ class Tree
     root_nodes.map { |node| Tree.new(root: node) }
   end
 
-  def render
+  def render(options = {})
+    graph_label = options[:label] || ""
     GraphViz.graph( :G ) do |graph|
       graphviz_to_render(graph, "")
+      graph[:label] = graph_label
       graph.output png: "graph_images/all_#{self.all_nodes.length}v_trees.png"
     end
   end
 
   def graphviz_to_render(graph, num)
-    graph.node[color: :lightblue, style: :filled]
-    graph.edge[color: :gray, fontcolor: :gray, arrowhead: :vee]
+    graph.node[
+      color: :tomato,
+      # fontcolor: :tomato,
+      # style: :filled,
+      width: 0.5,
+      height: 0.5,
+      fontname: "Helvetica",
+      fontsize: 12]
+    graph.edge[
+      color: :gray,
+      fontcolor: :gray,
+      fontname: "Helvetica",
+      fontsize: 12]
     self.all_nodes.each do |node|
       graph.add_nodes("#{num}.#{node.label}", label: node.label)
     end
@@ -149,16 +161,10 @@ class Tree
 
   def inspect_node(node)
     nodes = [node.label]
-    return nodes unless node.children.any?
-
-    node.children.each do |child|
-      nodes << inspect_node(child)
+    if node.children.any?
+      node.children.each { |child| nodes << inspect_node(child) }
+    else
+      nodes
     end
-
-    nodes
   end
 end
-
-
-Tree.build_trees(6)[16].render
-# Tree.render_trees(5)

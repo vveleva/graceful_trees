@@ -8,6 +8,7 @@ class BinaryTree < Tree
   def self.build(options)
     tree = BinaryTree.new(options)
     BinaryTree.build_btree(tree.root, options[:depth])
+    tree.label_nodes
 
     tree
   end
@@ -24,28 +25,5 @@ class BinaryTree < Tree
   def initialize(options)
     super(options)
     @depth = options[:depth]
-    label_nodes
   end
-end
-
-
-btree = BinaryTree.build(depth: 3)
-
-p btree
-# rspec test number of children
-# btree = BinaryTree.build(depth: 3)
-# btree.all_nodes.map { |node| node.children.length } == [2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0]
-p btree.list_of_edges
-btree.label_nodes
-p btree.list_of_edges
-
-# vlabels = 6
-# p (0...vlabels).to_a.permutation(vlabels).to_a
-
-digraph do
-  btree.list_of_edges.each do |(from, to)|
-    edge from, to
-  end
-
-  save "graph_images/btree_depth_#{btree.depth}", "png"
 end
