@@ -1,5 +1,5 @@
 require_relative 'trees'
-require_relative 'graceful_trees'
+require_relative 'symmetric_star_labeling'
 require 'graph'
 
 class BinaryTree < Tree
@@ -31,3 +31,7 @@ class BinaryTree < Tree
     @depth = options[:depth]
   end
 end
+
+# btree = BinaryTree.build(depth: 4)
+# vlabels = 2 ** (btree.depth)
+# p (1..vlabels).each_slice(2).to_a.permutation.to_a.map(&:flatten)
