@@ -47,41 +47,35 @@ class Tree
 
   def render(options = {})
     graph_label = options[:label] || ""
-    filename = options[:name] || "all_#{self.all_nodes.length}v_trees"
+    filename = options[:name] || "all_#{self.nodes.length}v_trees"
     GraphViz.graph( :G ) do |graph|
-      graphviz_to_render(graph, "")
-      graph[:fontname] = "Helvetica"
+      graphviz_data(graph, "")
       graph[:label] = graph_label
-      graph.output png: "graph_images/#{filename}.png"
+      graph.output(png: "graph_images/#{filename}.png")
     end
   end
 
-  def graphviz_to_render(graph, num)
-    graph.node[
-      color: :tomato4,
-      width: 0.5,
-      height: 0.5,
-      fontname: "Helvetica",
-      fontsize: 12]
-    graph.edge[
-      color: :yellowgreen,
-      fontcolor: :yellowgreen,
-      fontname: "Helvetica",
-      fontsize: 12]
-    self.all_nodes.each do |node|
-      graph.add_nodes("#{num}.#{node.label}", label: node.label)
+  def graphviz_data(graph, n)
+    data  = { fontname: "Helvetica", fontsize: 12 }
+    ndata = { color: :tomato4, width: 0.5, height: 0.5 }.merge(data)
+    edata = { color: :yellowgreen, fontcolor: :yellowgreen }.merge(data)
+    graph[data]
+    graph.node[ndata]
+    graph.edge[edata]
+
+    self.nodes.each do |node|
+      graph.add_nodes("#{n}.#{node.label}", label: node.label)
     end
-    self.list_of_edges.each do |(from, to)|
-      graph.add_edges(
-        "#{num}.#{from}", "#{num}.#{to}", label: " #{(from - to).abs}"
-      )
+
+    self.edges.each do |i, j|
+      graph.add_edges("#{n}.#{i}", "#{n}.#{j}", label: " #{(i - j).abs}")
     end
   end
 
   def self.render_trees(num_nodes)
     GraphViz.graph( :G ) do |graph|
       trees = Tree.build_trees(num_nodes)
-      trees.each_with_index { |tree, i| tree.graphviz_to_render(graph, i) }
+      trees.each_with_index { |tree, i| tree.graphviz_data(graph, i) }
 
       graph.output png: "graph_images/all_#{num_nodes}v_trees.png"
     end
@@ -113,10 +107,9 @@ class Tree
 
   def initialize(options)
     @root = options[:root] || Node.new
-    label_nodes
   end
 
-  def all_nodes
+  def nodes
     queue = [root]
     nodes = [root]
     while queue.any?
@@ -128,11 +121,15 @@ class Tree
     nodes
   end
 
-  def label_nodes
-    all_nodes.each_with_index { |node, idx| node.label = idx }
+  def label_nodes(labeling = [])
+    if labeling.empty?
+      nodes.each_with_index { |node, idx| node.label = idx }
+    else
+      nodes.zip([0] + labeling).each { |node, label| node.label = label }
+    end
   end
 
-  def list_of_edges
+  def edges
     edges = []
     nodes = [root]
     while nodes.any?
@@ -148,11 +145,10 @@ class Tree
   end
 
   def is_graceful?
-    vlabels = all_nodes.map(&:label)
-    elabels = list_of_edges.map { |(i, j)| (i - j).abs }
-    range = (0..vlabels.length).to_a
-
-    vlabels.sort == range && elabels.sort == range[1..-1]
+    vlabels = nodes.map(&:label).sort
+    elabels = edges.map { |i, j| (i - j).abs }.sort
+    range = (0...vlabels.length).to_a
+    vlabels == range && elabels == range[1..-1]
   end
 
   def inspect
