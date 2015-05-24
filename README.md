@@ -63,6 +63,7 @@ star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 |`depth` | the number of nodes after the root to the bottom of the tree |
 |`labeling` | an array of integers |
 
+<br>
 `#render(options = {})` takes a hash with keys:
 
 | Options | Descriptions |
@@ -70,6 +71,7 @@ star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 | `name` | a string that will be appended to the name of the outputted png |
 | `label` | a string that appears below the graph in the outputted png |
 
+<br>
 `::render_all_trees(size)`
 - `size` - total number of nodes in each tree
 
