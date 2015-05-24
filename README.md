@@ -1,10 +1,4 @@
-![btree_depth_3_graceful][btree_depth_3_graceful]
-
-![73_symmetric_star][73_symmetric_star]
-
-![4v_all][4v_all]
-![5v_all][5v_all]
-
+# Documentation
 
 ### Symmetric Star labeling
 
@@ -54,6 +48,8 @@ Example:
 star = SymmetricStar.build(legs: 7, depth: 3)
 star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 ```
+![73_symmetric_star][73_symmetric_star]
+![](./graph_images/73_symmetric_star.png=200x)
 
 ### Tree
 
@@ -61,7 +57,7 @@ star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 - `depth` - the number of nodes after the root to the bottom of the tree
 - `labeling` - an array of integers
 
-`#render` takes a hash with keys:
+`#render(options = {})` takes a hash with keys:
 - `name` - a string that will be appended to the name of the outputted png
 - `label` - a string that appears below the graph in the outputted png
 
@@ -82,7 +78,9 @@ Tree.render_all_trees(4)
 labelings = (0..4).to_a.permutation.to_a
 Tree.render_graceful_trees(4, labelings)
 ```
+![4v_all][4v_all]
 
+![5v_all][5v_all]
 
 ### Binary Tree
 
@@ -95,6 +93,7 @@ btree = BinaryTree.build(depth: 3, labeling: labeling)
 btree.render(name: "_graceful", label: "\nGraceful labeling")
 ```
 
+![btree_depth_3_graceful][btree_depth_3_graceful]
 
 
 
