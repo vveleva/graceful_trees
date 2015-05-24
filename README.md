@@ -1,6 +1,6 @@
 # Documentation
 
-### Symmetric Star labeling
+### Symmetric Star Labeling
 
 `#vlables` prints a matrix of node lables for a symmetric star
 

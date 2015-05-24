@@ -1,9 +1,11 @@
 require_relative 'trees'
 require_relative 'symmetric_star_labeling'
+require_relative 'labeling'
 require 'graph'
 
 
 class BinaryTree < Tree
+  extend Labeling
   attr_reader :depth
 
   def self.build(options)
@@ -29,31 +31,8 @@ class BinaryTree < Tree
      BinaryTree.build_children(node2, depth - 1)]
   end
 
-  def self.distinct_labelings(depth)
-    (1...2 ** (depth + 1) - 1).to_a.permutation.to_a.map { |arr|
-      slices = arr.each_slice(2).to_a;
-      slices.all? { |i, j| i < j } ? slices : nil
-    }.compact.map(&:flatten)
-  end
-
   def initialize(options)
     super(options)
     @depth = options[:depth]
   end
-
-  def self.graceful_labelings(depth)
-    labelings = BinaryTree.distinct_labelings(depth)
-    graceful_labelings = []
-    labelings.each do |labeling|
-      tree = BinaryTree.build(depth: 2, labeling: labeling)
-      graceful_labelings << labeling if tree.is_graceful?
-      tree = BinaryTree.new(depth: depth)
-    end
-
-    graceful_labelings
-  end
 end
-
-# btree = BinaryTree.build(depth: 4)
-# vlabels = 2 ** (btree.depth)
-# p (1..vlabels).each_slice(2).to_a.permutation.to_a.map(&:flatten)
