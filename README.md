@@ -2,13 +2,20 @@
 
 ### Symmetric Star Labeling
 
-##### `#vlables` prints a matrix of node lables for a symmetric star
+##### `#vlables`
+prints a matrix of node lables for a symmetric star
 
-##### `#elables` prints a matrix of edge lables for a symmetric star
+<br>
+##### `#elables`
+prints a matrix of edge lables for a symmetric star
 
-##### `#vlabel(j, i)` prints the *i<sup>th</sup>* node on the *j<sup>th</sup>* leg (or branch).
+<br>
+##### `#vlabel(j, i)`
+prints the *i<sup>th</sup>* node on the *j<sup>th</sup>* leg (or branch).
 
-##### `#elabel(j, i)` prints the *i<sup>th</sup>* edge on the *j<sup>th</sup>* leg (or branch).
+<br>
+##### `#elabel(j, i)`
+prints the *i<sup>th</sup>* edge on the *j<sup>th</sup>* leg (or branch).
 
 <!-- | Methods | Outpits |
 |:--------|:-------------|
@@ -90,6 +97,7 @@ star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 ##### `::render_all_trees(size)`
 - `size` - total number of nodes in each tree
 
+<br>
 ##### `::render_graceful_trees(size, labelings)`
 | Arguments | Descriptions |
 |:--------|:-------------|
