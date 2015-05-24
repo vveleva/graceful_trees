@@ -2,20 +2,13 @@
 
 ### Symmetric Star Labeling
 
-#### `#vlables`
-prints a matrix of node lables for a symmetric star
+##### `#vlables` prints a matrix of node lables for a symmetric star
 
-<br>
-#### `#elables`
-prints a matrix of edge lables for a symmetric star
+##### `#elables` prints a matrix of edge lables for a symmetric star
 
-<br>
-#### `#vlabel(j, i)`
-prints the *i<sup>th</sup>* node on the *j<sup>th</sup>* leg (or branch).
+##### `#vlabel(j, i)` prints the *i<sup>th</sup>* node on the *j<sup>th</sup>* leg (or branch).
 
-<br>
-#### `#elabel(j, i)`
-prints the *i<sup>th</sup>* edge on the *j<sup>th</sup>* leg (or branch).
+##### `#elabel(j, i)` prints the *i<sup>th</sup>* edge on the *j<sup>th</sup>* leg (or branch).
 
 <!-- | Methods | Outpits |
 |:--------|:-------------|
@@ -60,8 +53,7 @@ puts "3rd branch, 4th vertex is #{star.vlabel(3, 4)}."
 
 ### Graceful Symmetric Star
 
-#### `::build(options)`
-is a factory method, which takes an options hash with keys:
+##### `::build(options)`
 
 | Options | Descriptions |
 |:--------|:-------------|
@@ -79,8 +71,7 @@ star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 
 ### Tree
 
-#### `::build(options)`
-is a factory method, which takes an options hash with keys:
+##### `::build(options)`
 
 | Options | Descriptions |
 |:--------|:-------------|
@@ -88,8 +79,7 @@ is a factory method, which takes an options hash with keys:
 |`labeling` | an array of integers |
 
 <br>
-#### `#render(options = {})`
-takes a hash with keys:
+##### `#render(options = {})`
 
 | Options | Descriptions |
 |:--------|:-------------|
@@ -97,11 +87,10 @@ takes a hash with keys:
 | `label` | a string that appears below the graph in the outputted png |
 
 <br>
-#### `::render_all_trees(size)`
+##### `::render_all_trees(size)`
 - `size` - total number of nodes in each tree
 
-#### `::render_graceful_trees(size, labelings)`
-
+##### `::render_graceful_trees(size, labelings)`
 | Arguments | Descriptions |
 |:--------|:-------------|
 | `size` | total number of nodes in each tree |
