@@ -7,11 +7,8 @@ class BinaryTree < Tree
 
   def self.build(options)
     tree = BinaryTree.new(options)
-    depth = options[:depth]
-    labeling = options[:labeling]
-    BinaryTree.build_btree(tree.root, depth)
-    # p "in build #{labeling}"
-    tree.label_nodes(labeling)
+    BinaryTree.build_children(tree.root, options[:depth])
+    tree.label_nodes(options[:labeling])
 
     tree
   end
@@ -22,20 +19,19 @@ class BinaryTree < Tree
     super(name: "btree_depth_#{depth}#{custom_name}", label: label)
   end
 
-  def self.build_btree(node, depth)
+  def self.build_children(node, depth)
     return if depth == 0
 
     node1, node2 = [Node.new, Node.new]
     node.children = [node1, node2]
-    [BinaryTree.build_btree(node1, depth - 1),
-     BinaryTree.build_btree(node2, depth - 1)]
+    [BinaryTree.build_children(node1, depth - 1),
+     BinaryTree.build_children(node2, depth - 1)]
   end
 
   def self.distinct_labelings(depth)
     (1...2 ** (depth + 1) - 1).to_a.permutation.to_a.map { |arr|
       slices = arr.each_slice(2).to_a;
-      a = slices.all? { |i, j| i < j };
-      a ? slices : nil
+      slices.all? { |i, j| i < j } ? slices : nil
     }.compact.map(&:flatten)
   end
 

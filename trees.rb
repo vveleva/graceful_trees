@@ -10,6 +10,10 @@ class Fixnum
       (self - i).partitions(i).map { |rest| [i, *rest] }
     end
   end
+
+  def factorial
+    (1..self).inject(:*)
+  end
 end
 
 class Node
@@ -32,12 +36,12 @@ end
 class Tree
   attr_accessor :root
 
-  def self.build_trees(num_nodes)
+  def self.build_trees(n)
     root_nodes = []
-    if num_nodes == 1
+    if n == 1
       root_nodes << Node.new
     else
-      (num_nodes - 1).partitions.each do |partition|
+      (n - 1).partitions.each do |partition|
         root_nodes += Tree.partition_nodes(partition) unless partition.empty?
       end
     end
@@ -48,6 +52,7 @@ class Tree
   def render(options = {})
     graph_label = options[:label] || ""
     filename = options[:name] || "all_#{self.nodes.length}v_trees"
+
     GraphViz.graph( :G ) do |graph|
       graphviz_data(graph, "")
       graph[:label] = graph_label
@@ -72,12 +77,29 @@ class Tree
     end
   end
 
-  def self.render_trees(num_nodes)
+  def self.render_all_trees(n)
     GraphViz.graph( :G ) do |graph|
-      trees = Tree.build_trees(num_nodes)
-      trees.each_with_index { |tree, i| tree.graphviz_data(graph, i) }
+      trees = Tree.build_trees(n)
+      trees.each_with_index do |tree, i|
+        tree.label_nodes((0...n).to_a)
+        tree.graphviz_data(graph, "#{i}")
+      end
 
-      graph.output png: "graph_images/all_#{num_nodes}v_trees.png"
+      graph.output png: "graph_images/all_#{n}v_trees.png"
+    end
+  end
+
+  def self.render_graceful_trees(n, labelings)
+    GraphViz.graph( :G ) do |graph|
+      trees = Tree.build_trees(n)
+      trees.each_with_index do |tree, j|
+        labelings.each_with_index do |labeling, i|
+          tree.label_nodes(labeling)
+          tree.graphviz_data(graph, "#{i}#{j}") if tree.is_graceful?
+        end
+      end
+
+      graph.output png: "graph_images/all_#{n}v_graceful_trees.png"
     end
   end
 
@@ -125,7 +147,8 @@ class Tree
     if labeling.empty?
       nodes.each_with_index { |node, idx| node.label = idx }
     else
-      nodes.zip([0] + labeling).each { |node, label| node.label = label }
+      # nodes.zip([0] + labeling).each { |node, label| node.label = label }
+      nodes.zip(labeling).each { |node, label| node.label = label }
     end
   end
 
