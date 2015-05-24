@@ -5,11 +5,6 @@
 ![4v_all][4v_all]
 ![5v_all][5v_all]
 
-[btree_depth_3_graceful]: ./graph_images/btree_depth_3_graceful.png
-[73_symmetric_star]: ./graph_images/73_symmetric_star.png
-[4v_all]: ./graph_images/4v_all.png
-[5v_all]: ./graph_images/5v_all.png
-
 
 ### Symmetric Star labeling
 
@@ -49,6 +44,10 @@ puts "#{3}th branch, #{4}th vertex is #{star.vlabel(3, 4)}."
 
 ### Graceful Symmetric Star
 
+`::build(options)` is a factory method, which takes an options hash with keys:
+- `legs` - the number of paths attached to the root node
+- `depth` - the number of nodes after the root to the bottom of the tree
+
 Example:
 
 ```ruby
@@ -58,15 +57,55 @@ star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 
 ### Tree
 
+`::build(options)` is a factory method, which takes an options hash with keys:
+- `depth` - the number of nodes after the root to the bottom of the tree
+- `labeling` - an array of integers
+
 `#render` takes a hash with keys:
-  - `name` - a string that will be appended to the name of the outputed png
-  - `label` - a string that appears below the graph in the outputed png
+- `name` - a string that will be appended to the name of the outputted png
+- `label` - a string that appears below the graph in the outputted png
 
-  Example:
+`::render_all_trees(size)`
+- `size` - total number of nodes in each tree
 
-  ```ruby
-  # this is a graceful labeling for a binary tree on 15 nodes
-  labeling = [0, 7, 14, 11, 8, 4, 1, 2, 3, 5, 6, 9, 10, 12, 13]
-  tree = BinaryTree.build(depth: 3, labeling: labeling)
-  tree.render(name: "_graceful", label: "\nGraceful labeling")
-  ```
+`::render_graceful_trees(size, labelings)`
+- `size` - total number of nodes in each tree
+- `labelings` - an array of potential graceful labelings (each of which is also an array)
+
+Example:
+
+```ruby
+# outputs a png with all trees on 4 vertices
+Tree.render_all_trees(4)
+
+# outpits a png with all graceful labelings of all trees on 4 vertices
+labelings = (0..4).to_a.permutation.to_a
+Tree.render_graceful_trees(4, labelings)
+```
+
+
+### Binary Tree
+
+Example:
+
+```ruby
+# this is a graceful labeling for a binary tree on 15 nodes
+labeling = [0, 7, 14, 11, 8, 4, 1, 2, 3, 5, 6, 9, 10, 12, 13]
+btree = BinaryTree.build(depth: 3, labeling: labeling)
+btree.render(name: "_graceful", label: "\nGraceful labeling")
+```
+
+
+
+
+
+
+
+
+
+
+
+[btree_depth_3_graceful]: ./graph_images/btree_depth_3_graceful.png
+[73_symmetric_star]: ./graph_images/73_symmetric_star.png
+[4v_all]: ./graph_images/4v_all.png
+[5v_all]: ./graph_images/5v_all.png
