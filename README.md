@@ -6,9 +6,9 @@
 
 `#elables` prints a matrix of edge lables for a symmetric star
 
-`#vlabel(j, i)` prints the *ith* node on the *jth* leg (or branch).
+`#vlabel(j, i)` prints the *i<sup>th</sup>* node on the *j<sup>th</sup>* leg (or branch).
 
-`#elabel(j, i)` prints the *ith* edge on the *jth* leg (or branch).
+`#elabel(j, i)` prints the *i<sup>th</sup>* edge on the *<sup>th</sup> leg (or branch).
 
 <!-- | Methods | Outpits |
 |:--------|:-------------|
