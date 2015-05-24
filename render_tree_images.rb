@@ -24,13 +24,12 @@ require_relative 'path_tree'
 
 # Tree.render_all_trees(4)
 
-
 # star = Star.build(vertices: 5)
 # star.render(name: "star_5v")
 
+# path = Path.build(vertices: 6)
+# path.render(name: "path_6v", label: "\nGraceful path on 6 vertices")
 
-path = Path.build(vertices: 6)
-path.render(name: "path_6v", label: "\nGraceful path on 6 vertices")
-
-# firecracker = Firecracker.build(star_vertices: 4, path_length: 3)
-# firecracker.render(name: "firecracker_43")
+firecracker = Firecracker.build(star_vertices: 4, path_length: 4)
+firecracker.render(name: "firecracker_44")
+p firecracker.nodes
