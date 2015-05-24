@@ -8,7 +8,7 @@
 
 `#vlabel(j, i)` prints the *i<sup>th</sup>* node on the *j<sup>th</sup>* leg (or branch).
 
-`#elabel(j, i)` prints the *i<sup>th</sup>* edge on the *<sup>th</sup> leg (or branch).
+`#elabel(j, i)` prints the *i<sup>th</sup>* edge on the *j<sup>th</sup> leg (or branch).
 
 <!-- | Methods | Outpits |
 |:--------|:-------------|
