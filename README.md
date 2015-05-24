@@ -48,8 +48,8 @@ Example:
 star = SymmetricStar.build(legs: 7, depth: 3)
 star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 ```
-![73_symmetric_star][73_symmetric_star]
-![](./graph_images/73_symmetric_star.png=200x)
+<!-- ![73_symmetric_star][73_symmetric_star] -->
+<img src="./graph_images/73_symmetric_star.png" width="300" align="center">
 
 ### Tree
 
