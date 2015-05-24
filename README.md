@@ -49,7 +49,7 @@ star = SymmetricStar.build(legs: 7, depth: 3)
 star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 ```
 
-<img src="graph_images/73_symmetric_star.png" width="250" style="margin-left: 150px;">
+<img src="graph_images/73_symmetric_star.png" width="300">
 
 ### Tree
 
@@ -78,7 +78,7 @@ Tree.render_all_trees(4)
 labelings = (0..4).to_a.permutation.to_a
 Tree.render_graceful_trees(4, labelings)
 ```
-<img src="graph_images/4v_all.png" width="150" style="margin-left: 200px;">
+<img src="graph_images/4v_all.png" width="200">
 
 ![5v_all][5v_all]
 
@@ -93,7 +93,7 @@ btree = BinaryTree.build(depth: 3, labeling: labeling)
 btree.render(name: "_graceful", label: "\nGraceful labeling")
 ```
 
-<img src="graph_images/btree_depth_3_graceful.png" width="250" style="margin-left: 150px;">
+<img src="graph_images/btree_depth_3_graceful.png" width="300">
 
 
 
