@@ -78,7 +78,12 @@ Tree.render_all_trees(4)
 labelings = (0..4).to_a.permutation.to_a
 Tree.render_graceful_trees(4, labelings)
 ```
+
+All graceful labelings of all trees on 4 vertices
+
 <img src="graph_images/4v_all.png" width="200">
+
+All graceful labelings of all trees on 5 vertices
 
 ![5v_all][5v_all]
 
