@@ -46,3 +46,26 @@ puts "#{3}th branch, #{4}th vertex is #{star.vlabel(3, 4)}."
 
 # 3th branch, 4th vertex is 20.
 ```
+
+### Graceful Symmetric Star
+
+Example:
+
+```ruby
+star = SymmetricStar.build(legs: 7, depth: 3)
+star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
+```
+
+### Tree
+
+`#render` takes a hash with keys:
+  - `name` - a string that will be appended to thename of the outputed png
+  - `label` - a string that appears at the bottom of the outputed png
+
+  Example:
+
+  ```ruby
+  labeling = [0, 7, 14, 11, 8, 4, 1, 2, 3, 5, 6, 9, 10, 12, 13]
+  tree = BinaryTree.build(depth: 3, labeling: labeling)
+  tree.render(name: "_graceful", label: "\nGraceful labeling")
+  ```

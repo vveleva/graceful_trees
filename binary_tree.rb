@@ -2,6 +2,7 @@ require_relative 'trees'
 require_relative 'symmetric_star_labeling'
 require 'graph'
 
+
 class BinaryTree < Tree
   attr_reader :depth
 

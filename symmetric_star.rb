@@ -17,7 +17,7 @@ class SymmetricStar < Tree
   end
 
   def label_nodes
-    "already labeled"
+    p "already labeled on ::build"
   end
 
   def render

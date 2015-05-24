@@ -41,9 +41,3 @@ class SymmetricStarLabeling
     i == 1  ?  n * (m - j + 1)  :  (n * (m - 2 * j + 2) - (i - 1)).abs
   end
 end
-
-
-# star = SymmetricStarLabeling.new(6, 9)
-# star.print_vlabels
-# star.print_elabels(:blue)
-# puts "#{3}th branch, #{4}th vertex is #{star.vlabel(3, 4)}."
