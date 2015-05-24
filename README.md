@@ -2,6 +2,21 @@
 
 ### Symmetric Star labeling
 
+`#vlables` prints a matrix of node lables for a symmetric star
+
+`#elables` prints a matrix of edge lables for a symmetric star
+
+`#vlabel(j, i)` prints the *ith* node on the *jth* leg (or branch).
+
+`#elabel(j, i)` prints the *ith* edge on the *jth* leg (or branch).
+
+<!-- | Methods | Outpits |
+|:--------|:-------------|
+| `#vlables` | prints a matrix of node lables for a symmetric star |
+| `#elables` | prints a matrix of edge lables for a symmetric star |
+| `#vlabel(j, i)` | prints the *ith* node on the *jth* leg (or branch). |
+| `#elabel(j, i)` | prints the *ith* edge on the *jth* leg (or branch). | -->
+
 Example:
 
 ```ruby
