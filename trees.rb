@@ -4,38 +4,9 @@ require 'graphviz'
 require 'graphviz/dsl'
 
 
-class Fixnum
-  def partitions(max = self)
-    return [[]] if self == 0
-    [self, max].min.downto(1).flat_map do |i|
-      (self - i).partitions(i).map { |rest| [i, *rest] }
-    end
-  end
-
-  def factorial
-    (1..self).inject(:*)
-  end
-end
-
-class Node
-  attr_accessor :children, :label
-
-  def initialize(options = {})
-    @children = options[:children] || []
-    @label = options[:label] || 0
-  end
-
-  def dup
-    Node.new(children: children.map(&:dup))
-  end
-
-  def inspect
-    label
-  end
-end
-
 class Tree
   extend Labeling
+
   attr_accessor :root
 
   def self.build_trees(n)
@@ -59,23 +30,6 @@ class Tree
       graphviz_data(graph, "")
       graph[:label] = graph_label
       graph.output(png: "graph_images/#{filename}.png")
-    end
-  end
-
-  def graphviz_data(graph, n)
-    data  = { fontname: "Helvetica", fontsize: 12 }
-    ndata = { color: :tomato4, width: 0.5, height: 0.5 }.merge(data)
-    edata = { color: :yellowgreen, fontcolor: :yellowgreen }.merge(data)
-    graph[data]
-    graph.node[ndata]
-    graph.edge[edata]
-
-    self.nodes.each do |node|
-      graph.add_nodes("#{n}.#{node.label}", label: node.label)
-    end
-
-    self.edges.each do |i, j|
-      graph.add_edges("#{n}.#{i}", "#{n}.#{j}", label: " #{(i - j).abs}")
     end
   end
 
@@ -133,6 +87,18 @@ class Tree
     @root = options[:root] || Node.new
   end
 
+  def label_nodes(labeling = [])
+    raise ArgumentError.new(
+      "number of labels doesn't match the number of nodes"
+    ) unless nodes.count == labeling.length
+
+    if labeling.empty?
+      nodes.each_with_index { |node, idx| node.label = idx }
+    else
+      nodes.zip(labeling).each { |node, label| node.label = label }
+    end
+  end
+
   def nodes
     queue = [root]
     nodes = [root]
@@ -143,17 +109,6 @@ class Tree
     end
 
     nodes
-  end
-
-  def label_nodes(labeling = [])
-    if nodes.count != labeling.length
-      raise ArgumentError.new("wrong number of labels in passed labeling")
-    end
-    if labeling.empty?
-      nodes.each_with_index { |node, idx| node.label = idx }
-    else
-      nodes.zip(labeling).each { |node, label| node.label = label }
-    end
   end
 
   def edges
@@ -189,5 +144,54 @@ class Tree
     else
       nodes
     end
+  end
+
+  def graphviz_data(graph, n)
+    data  = { fontname: "Helvetica", fontsize: 12 }
+    ndata = { color: :tomato4, width: 0.5, height: 0.5 }.merge(data)
+    edata = { color: :yellowgreen, fontcolor: :yellowgreen }.merge(data)
+    graph[data]
+    graph.node[ndata]
+    graph.edge[edata]
+
+    self.nodes.each do |node|
+      graph.add_nodes("#{n}.#{node.label}", label: node.label)
+    end
+
+    self.edges.each do |i, j|
+      graph.add_edges("#{n}.#{i}", "#{n}.#{j}", label: " #{(i - j).abs}")
+    end
+  end
+end
+
+
+class Node
+  attr_accessor :children, :label
+
+  def initialize(options = {})
+    @children = options[:children] || []
+    @label = options[:label] || 0
+  end
+
+  def dup
+    Node.new(children: children.map(&:dup))
+  end
+
+  def inspect
+    label
+  end
+end
+
+
+class Fixnum
+  def partitions(max = self)
+    return [[]] if self == 0
+    [self, max].min.downto(1).flat_map do |i|
+      (self - i).partitions(i).map { |rest| [i, *rest] }
+    end
+  end
+
+  def factorial
+    (1..self).inject(:*)
   end
 end
