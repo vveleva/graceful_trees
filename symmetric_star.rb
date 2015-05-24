@@ -8,6 +8,7 @@ class SymmetricStar < Tree
 
   def self.build(options)
     tree = SymmetricStar.new(options)
+    # labeling = SymmetricStarLabeling.new(tree.legs, tree.depth)
     labeling = SymmetricStarLabeling.new(options[:legs], options[:depth])
     labeling.vlabels.each do |labels|
       tree.root.children << SymmetricStar.build_path(labels)

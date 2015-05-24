@@ -88,13 +88,13 @@ class Tree
   end
 
   def label_nodes(labeling = [])
-    raise ArgumentError.new(
-      "number of labels doesn't match the number of nodes"
-    ) unless nodes.count == labeling.length
-
     if labeling.empty?
       nodes.each_with_index { |node, idx| node.label = idx }
     else
+      raise ArgumentError.new(
+        "number of labels doesn't match the number of nodes"
+      ) unless nodes.count == labeling.length
+
       nodes.zip(labeling).each { |node, label| node.label = label }
     end
   end

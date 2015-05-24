@@ -1,6 +1,7 @@
 require_relative 'trees'
 require_relative 'binary_tree'
 require_relative 'symmetric_star'
+require_relative 'star_tree'
 
 
 # labeling = [0, 7, 14, 11, 8, 4, 1, 2, 3, 5, 6, 9, 10, 12, 13]
@@ -8,8 +9,11 @@ require_relative 'symmetric_star'
 # tree.render(name: "_graceful", label: "\nGraceful labeling")
 
 
-# btree = BinaryTree.graceful_btree_labelings(2)
-
+# btree = BinaryTree.graceful_btree_labelings(3)
+# btree.each do |l|
+#   tree = BinaryTree.build(depth: 3, labeling: l)
+#   tree.render(name: "_graceful", label: "\nGraceful labeling")
+# end
 
 # size = 3
 # labelings = Tree.distinct_labelings(size)
@@ -17,3 +21,7 @@ require_relative 'symmetric_star'
 
 
 # Tree.render_all_trees(4)
+
+
+star = Star.build(vertices: 5)
+star.render(name: "star_5v")
