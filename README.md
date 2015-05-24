@@ -24,7 +24,7 @@ star = SymmetricStarLabeling.new(6, 9)
 star.print_vlabels
 star.print_elabels(:blue)
 
-puts "#{3}th branch, #{4}th vertex is #{star.vlabel(3, 4)}."
+puts "3rd branch, 4th vertex is #{star.vlabel(3, 4)}."
 
 #=> all vertex labelings
 54	45	36	27	18	9
