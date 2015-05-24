@@ -3,6 +3,9 @@ require_relative 'symmetric_star_labeling'
 require 'colorize'
 
 
+# Theorem: All symmetric star trees are graceful.
+
+
 class SymmetricStar < Tree
   attr_reader :legs, :depth
 

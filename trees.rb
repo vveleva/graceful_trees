@@ -22,17 +22,6 @@ class Tree
     root_nodes.map { |node| Tree.new(root: node) }
   end
 
-  def render(options = {})
-    graph_label = options[:label] || ""
-    filename = options[:name] || "all_#{self.nodes.length}v_trees"
-
-    GraphViz.graph( :G ) do |graph|
-      graphviz_data(graph, "")
-      graph[:label] = graph_label
-      graph.output(png: "graph_images/#{filename}.png")
-    end
-  end
-
   def self.render_all_trees(n)
     GraphViz.graph( :G ) do |graph|
       trees = Tree.build_trees(n)
@@ -85,6 +74,17 @@ class Tree
 
   def initialize(options)
     @root = options[:root] || Node.new
+  end
+
+  def render(options = {})
+    graph_label = options[:label] || ""
+    filename = options[:name] || "all_#{self.nodes.length}v_trees"
+
+    GraphViz.graph( :G ) do |graph|
+      graphviz_data(graph, "")
+      graph[:label] = graph_label
+      graph.output(png: "graph_images/#{filename}.png")
+    end
   end
 
   def label_nodes(labeling = [])

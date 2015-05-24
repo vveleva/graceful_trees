@@ -1,7 +1,9 @@
 require_relative 'trees'
 require_relative 'binary_tree'
 require_relative 'symmetric_star'
+require_relative 'firecracker_tree'
 require_relative 'star_tree'
+require_relative 'path_tree'
 
 
 # labeling = [0, 7, 14, 11, 8, 4, 1, 2, 3, 5, 6, 9, 10, 12, 13]
@@ -23,5 +25,12 @@ require_relative 'star_tree'
 # Tree.render_all_trees(4)
 
 
-star = Star.build(vertices: 5)
-star.render(name: "star_5v")
+# star = Star.build(vertices: 5)
+# star.render(name: "star_5v")
+
+
+path = Path.build(vertices: 6)
+path.render(name: "path_6v", label: "\nGraceful path on 6 vertices")
+
+# firecracker = Firecracker.build(star_vertices: 4, path_length: 3)
+# firecracker.render(name: "firecracker_43")
