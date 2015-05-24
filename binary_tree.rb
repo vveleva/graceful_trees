@@ -5,7 +5,7 @@ require 'graph'
 
 
 class BinaryTree < Tree
-  extend Labeling
+  extend BinaryLabeling
   attr_reader :depth
 
   def self.build(options)

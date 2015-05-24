@@ -1,3 +1,4 @@
+require_relative 'labeling'
 require 'graph'
 require 'graphviz'
 require 'graphviz/dsl'
@@ -34,6 +35,7 @@ class Node
 end
 
 class Tree
+  extend Labeling
   attr_accessor :root
 
   def self.build_trees(n)
@@ -144,10 +146,12 @@ class Tree
   end
 
   def label_nodes(labeling = [])
+    if nodes.count != labeling.length
+      raise ArgumentError.new("wrong number of labels in passed labeling")
+    end
     if labeling.empty?
       nodes.each_with_index { |node, idx| node.label = idx }
     else
-      # nodes.zip([0] + labeling).each { |node, label| node.label = label }
       nodes.zip(labeling).each { |node, label| node.label = label }
     end
   end
