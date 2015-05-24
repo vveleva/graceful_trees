@@ -24,3 +24,41 @@ module Labeling
     (0...depth).to_a.permutation.to_a
   end
 end
+
+
+module FirecrackerLabeling
+
+  def graceful_labeling(options)
+    k = options[:path_length]
+    m = options[:star_vertices] + 1
+
+    labels = []
+    k.times do |i|
+      if i.even?
+        labels << i / 2 * m + 1
+      else
+        labels << 1 + (k - (i + 1) / 2) * m
+      end
+    end
+
+    k.times do |i|
+      if i.even?
+        labels << (k - i / 2) * m
+      else
+        labels << (i + 1) / 2 * m
+      end
+    end
+
+    k.times do |i|
+      (2...m).each do |j|
+        if i.even?
+          labels << j + i / 2 * m
+        else
+          labels << j + (k - (i + 1) / 2) * m
+        end
+      end
+    end
+
+    labels
+  end
+end

@@ -2,6 +2,7 @@ require_relative 'trees'
 require_relative 'star_tree'
 require_relative 'path_tree'
 require_relative 'symmetric_star'
+require_relative 'labeling'
 require 'graph'
 
 
@@ -13,6 +14,8 @@ require 'graph'
 
 
 class Firecracker < Tree
+  extend FirecrackerLabeling
+
   attr_reader :star_vertices, :path_length, :path_nodes
 
   def self.build(options)
@@ -23,7 +26,7 @@ class Firecracker < Tree
     tree.nodes.each do |node|
       node.children << Star.build(vertices: tree.star_vertices).root
     end
-    tree.label_nodes
+    tree.label_nodes(Firecracker.graceful_labeling(options))
 
     tree
   end
