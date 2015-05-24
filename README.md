@@ -39,8 +39,11 @@ puts "#{3}th branch, #{4}th vertex is #{star.vlabel(3, 4)}."
 ### Graceful Symmetric Star
 
 `::build(options)` is a factory method, which takes an options hash with keys:
-- `legs` - the number of paths attached to the root node
-- `depth` - the number of nodes after the root to the bottom of the tree
+
+| Options | Descriptions |
+|:--------|:-------------|
+| `legs` | the number of paths attached to the root node |
+| `depth` | the number of nodes after the root to the bottom of the tree |
 
 Example:
 
@@ -54,19 +57,28 @@ star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 ### Tree
 
 `::build(options)` is a factory method, which takes an options hash with keys:
-- `depth` - the number of nodes after the root to the bottom of the tree
-- `labeling` - an array of integers
+
+| Options | Descriptions |
+|:--------|:-------------|
+|`depth` | the number of nodes after the root to the bottom of the tree |
+|`labeling` | an array of integers |
 
 `#render(options = {})` takes a hash with keys:
-- `name` - a string that will be appended to the name of the outputted png
-- `label` - a string that appears below the graph in the outputted png
+
+| Options | Descriptions |
+|:--------|:-------------|
+| `name` | a string that will be appended to the name of the outputted png |
+| `label` | a string that appears below the graph in the outputted png |
 
 `::render_all_trees(size)`
 - `size` - total number of nodes in each tree
 
 `::render_graceful_trees(size, labelings)`
-- `size` - total number of nodes in each tree
-- `labelings` - an array of potential graceful labelings (each of which is also an array)
+
+| Arguments | Descriptions |
+|:--------|:-------------|
+| `size` | total number of nodes in each tree |
+| `labelings` | an array of potential graceful labelings (each of which is also an array) |
 
 Example:
 
