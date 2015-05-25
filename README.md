@@ -1,35 +1,19 @@
 # Documentation
 
 - [Tree](#tree)
-- [Path](#path)
-- [Star](#star)
-- [Symmetric Star](#symmetric-star)
+- [Path Tree](#path-tree)
+- [Star Tree](#star-tree)
+- [Symmetric Star Tree](#symmetric-star-tree)
 - [Firecracker Tree](#firecracker-tree)
 - [Binary Tree](#binary-tree)
 
 ### Symmetric Star Labeling
 
-##### `#vlabels`
-prints a matrix of node lables for a symmetric star
+- `#vlabels` prints a matrix of node lables for a symmetric star
+- `#elabels` prints a matrix of edge lables for a symmetric star
+- `#vlabel(j, i)` prints the *i<sup>th</sup>* node on the *j<sup>th</sup>* leg (or branch).
+- `#elabel(j, i)` prints the *i<sup>th</sup>* edge on the *j<sup>th</sup>* leg (or branch).
 
-<br>
-##### `#elabels`
-prints a matrix of edge lables for a symmetric star
-
-<br>
-##### `#vlabel(j, i)`
-prints the *i<sup>th</sup>* node on the *j<sup>th</sup>* leg (or branch).
-
-<br>
-##### `#elabel(j, i)`
-prints the *i<sup>th</sup>* edge on the *j<sup>th</sup>* leg (or branch).
-
-<!-- | Methods | Outpits |
-|:--------|:-------------|
-| `#vlables` | prints a matrix of node lables for a symmetric star |
-| `#elables` | prints a matrix of edge lables for a symmetric star |
-| `#vlabel(j, i)` | prints the *ith* node on the *jth* leg (or branch). |
-| `#elabel(j, i)` | prints the *ith* edge on the *jth* leg (or branch). | -->
 
 Example:
 
@@ -65,14 +49,12 @@ puts "3rd branch, 4th vertex is #{star.vlabel(3, 4)}."
 # 3rd branch, 4th vertex is 20.
 ```
 
+
 ### Symmetric Star
 
 ##### `::build(options)`
-
-| Options | Descriptions |
-|:--------|:-------------|
-| `legs` | the number of paths attached to the root node |
-| `depth` | the number of nodes after the root to the bottom of the tree |
+- `legs` - the number of paths attached to the root node
+- `depth` - the number of nodes after the root to the bottom of the tree
 
 Example:
 
@@ -83,33 +65,23 @@ star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="graph_images/73_symmetric_star.png" width="300">
 
+
 ### Tree
 
 ##### `::build(options)`
+- `depth` - the number of nodes after the root to the bottom of the tree
+- `labeling` - an array of integers
 
-| Options | Descriptions |
-|:--------|:-------------|
-|`depth` | the number of nodes after the root to the bottom of the tree |
-|`labeling` | an array of integers |
-
-<br>
 ##### `#render(options = {})`
+- `name` - a string that will be appended to the name of the outputted png
+- `label` - a string that appears below the graph in the outputted png
 
-| Options | Descriptions |
-|:--------|:-------------|
-| `name` | a string that will be appended to the name of the outputted png |
-| `label` | a string that appears below the graph in the outputted png |
-
-<br>
 ##### `::render_all_trees(size)`
 - `size` - total number of nodes in each tree
 
-<br>
 ##### `::render_graceful_trees(size, labelings)`
-| Arguments | Descriptions |
-|:--------|:-------------|
-| `size` | total number of nodes in each tree |
-| `labelings` | an array of potential graceful labelings (each of which is also an array) |
+- `size` - total number of nodes in each tree
+- `labelings` - an array of potential graceful labelings (each of which is also an array)
 
 Example:
 
@@ -134,20 +106,14 @@ All graceful labelings of all trees on 5 vertices
 ### Path
 
 ##### `::build(options)`
-
-| Options | Descriptions |
-|:--------|:-------------|
-|`vertices` | number of total nodes |
+- `vertices` - number of total nodes
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="graph_images/path_6v.png" height="360">
 
 ### Star
 
 ##### `::build(options)`
-
-| Options | Descriptions |
-|:--------|:-------------|
-|`vertices` | number of total nodes |
+- `vertices` - number of total nodes
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="graph_images/star_7v.png" width="300">
 
@@ -168,11 +134,8 @@ btree.render(name: "_graceful", label: "\nGraceful labeling")
 ### Firecracker Tree
 
 ##### `::build(options)`
-
-| Options | Descriptions |
-|:--------|:-------------|
-|`path_length` | length of main path |
-|`star_vertices` | number of nodes in each star attached to each node of the path|
+- `path_length` - length of main path
+- `star_vertices` - number of nodes in each star attached to each node of the path
 
 Example:
 
