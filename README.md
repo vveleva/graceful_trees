@@ -1,19 +1,19 @@
 # Documentation
 
-- Tree
-- Path
-- Star
-- Symmetric Star
+- [Tree](#tree)
+- [Path](#path)
+- [Star](#star)
+- [Symmetric Star](#symmetric-star)
 - [Firecracker Tree](#firecracker-tree)
-- Binary Tree
+- [Binary Tree](#binary-tree)
 
 ### Symmetric Star Labeling
 
-##### `#vlables`
+##### `#vlabels`
 prints a matrix of node lables for a symmetric star
 
 <br>
-##### `#elables`
+##### `#elabels`
 prints a matrix of edge lables for a symmetric star
 
 <br>
@@ -65,7 +65,7 @@ puts "3rd branch, 4th vertex is #{star.vlabel(3, 4)}."
 # 3rd branch, 4th vertex is 20.
 ```
 
-### Graceful Symmetric Star
+### Symmetric Star
 
 ##### `::build(options)`
 
@@ -129,6 +129,27 @@ All graceful labelings of all trees on 4 vertices
 All graceful labelings of all trees on 5 vertices
 
 ![5v_all][5v_all]
+
+
+### Path
+
+##### `::build(options)`
+
+| Options | Descriptions |
+|:--------|:-------------|
+|`vertices` | number of total nodes |
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="graph_images/path_6v.png" height="360">
+
+### Star
+
+##### `::build(options)`
+
+| Options | Descriptions |
+|:--------|:-------------|
+|`vertices` | number of total nodes |
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="graph_images/star_7v.png" width="300">
 
 ### Binary Tree
 

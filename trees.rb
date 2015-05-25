@@ -88,8 +88,6 @@ class Tree
   end
 
   def label_nodes(labeling = [])
-    p labeling.length
-    p nodes.length
     if labeling.empty?
       nodes.each_with_index { |node, idx| node.label = idx }
     else
