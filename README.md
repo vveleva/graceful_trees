@@ -103,14 +103,14 @@ All graceful labelings of all trees on 5 vertices
 ![5v_all][5v_all]
 
 
-### Path
+### Path Tree
 
 ##### `::build(options)`
 - `vertices` - number of total nodes
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="graph_images/path_6v.png" height="360">
 
-### Star
+### Star Tree
 
 ##### `::build(options)`
 - `vertices` - number of total nodes
