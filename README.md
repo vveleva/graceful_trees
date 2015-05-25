@@ -4,8 +4,7 @@
 - Path
 - Star
 - Symmetric Star
-- Firecracker Tree
-- [[Firecracker|### Firecracker Tree]]
+- [Firecracker Tree](#firecracker-tree)
 - Binary Tree
 
 ### Symmetric Star Labeling
