@@ -31,5 +31,5 @@ require_relative 'path_tree'
 # path.render(name: "path_6v", label: "\nGraceful path on 6 vertices")
 
 
-firecracker = Firecracker.build(star_vertices: 4, path_length: 4)
-firecracker.render(name: "firecracker_44", label: "\nGraceful firecraker tree")
+firecracker = Firecracker.build(path_length: 4, star_vertices: 3)
+firecracker.render

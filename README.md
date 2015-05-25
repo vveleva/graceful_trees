@@ -137,8 +137,25 @@ btree.render(name: "_graceful", label: "\nGraceful labeling")
 <img src="graph_images/btree_depth_3_graceful.png" width="300">
 
 
+### Firecracker Tree
 
+##### `::build(options)`
 
+| Options | Descriptions |
+|:--------|:-------------|
+|`path_length` | length of main path |
+|`star_vertices` | number of nodes in each star attached to each node of the path|
+
+Example:
+
+```ruby
+firecracker = Firecracker.build(path_length: 4, star_vertices: 3)
+firecracker.render
+```
+
+<img src="graph_images/firecracker_45.png" width="300">
+
+<img src="graph_images/firecracker_43.png" height="360">
 
 
 

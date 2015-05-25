@@ -19,12 +19,12 @@ class Firecracker < Tree
   attr_reader :star_vertices, :path_length, :path_nodes
 
   def self.build(options)
-    path = Path.build(vertices: options[:star_vertices])
+    path = Path.build(vertices: options[:path_length])
     options[:path_nodes] = path.nodes
     tree = Firecracker.new(options)
     tree.root = path.root
     tree.nodes.each do |node|
-      node.children << Star.build(vertices: tree.star_vertices).root
+      node.children << Star.build(vertices: tree.star_vertices - 1).root
     end
     tree.label_nodes(Firecracker.graceful_labeling(options))
 
@@ -42,6 +42,12 @@ class Firecracker < Tree
     end
 
     nodes
+  end
+
+  def render(options = {})
+    options[:name] ||= "firecracker_#{path_length}#{star_vertices}"
+    options[:label] ||= "\nGraceful F(#{path_length}, #{star_vertices}) labeling"
+    super(options)
   end
 
   def initialize(options)
