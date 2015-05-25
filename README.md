@@ -74,7 +74,7 @@ star = SymmetricStar.build(legs: 7, depth: 3)
 star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 ```
 
-<img src="graph_images/73_symmetric_star.png" width="300">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="graph_images/73_symmetric_star.png" width="300">
 
 ### Tree
 
@@ -117,7 +117,7 @@ Tree.render_graceful_trees(4, labelings)
 
 All graceful labelings of all trees on 4 vertices
 
-<img src="graph_images/4v_all.png" width="200">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="graph_images/4v_all.png" width="200">
 
 All graceful labelings of all trees on 5 vertices
 
@@ -153,8 +153,7 @@ firecracker = Firecracker.build(path_length: 4, star_vertices: 3)
 firecracker.render
 ```
 
-<img src="graph_images/firecracker_45.png" width="300">
-
+<img src="graph_images/firecracker_45.png" width="300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="graph_images/firecracker_43.png" height="360">
 
 
