@@ -5,7 +5,7 @@
 - [Star Tree](#star-tree)
 - [Symmetric Star Tree](#symmetric-star-tree)
 - [Firecracker Tree](#firecracker-tree)
-- [Binary Tree](#binary-tree)
+- [K_ary Tree](#k_ary-tree)
 
 ### Symmetric Star Labeling
 
@@ -117,19 +117,20 @@ All graceful labelings of all trees on 5 vertices
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="graph_images/star_7v.png" width="300">
 
-### Binary Tree
+### K_ary Tree
 
 Example:
 
 ```ruby
-# this is a graceful labeling for a binary tree on 15 nodes
+# this is a graceful labeling for a k_ary tree on 15 nodes
 labeling = [0, 7, 14, 11, 8, 4, 1, 2, 3, 5, 6, 9, 10, 12, 13]
-btree = BinaryTree.build(depth: 3, labeling: labeling)
+btree = K_aryTree.build(depth: 3, labeling: labeling)
 btree.render(name: "_graceful", label: "\nGraceful labeling")
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="graph_images/btree_depth_3_graceful.png" width="300">
 
+### K_ary Tree
 
 ### Firecracker Tree
 
