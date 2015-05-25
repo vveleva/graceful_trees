@@ -1,4 +1,4 @@
-require_relative 'trees'
+require_relative 'tree'
 require_relative 'symmetric_star_labeling'
 require_relative 'labeling'
 require 'graph'

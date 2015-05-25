@@ -1,4 +1,4 @@
-require_relative 'trees'
+require_relative 'tree'
 
 class Star < Tree
 

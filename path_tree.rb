@@ -1,4 +1,4 @@
-require_relative 'trees'
+require_relative 'tree'
 
 
 class Path < Tree
@@ -16,6 +16,13 @@ class Path < Tree
     end
 
     path
+  end
+
+  def render(options = {})
+    options[:name] ||= "path_#{vertices}v"
+    options[:label] ||= "\nGraceful labeling for path on #{vertices} vertices"
+    options[:rankdir] = :LR
+    super(options)
   end
 
   def self.graceful_labeling(vertices)

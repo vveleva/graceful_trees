@@ -1,6 +1,6 @@
 require 'colorize'
 require 'graph'
-require_relative 'trees'
+require_relative 'tree'
 
 
 class SymmetricStarLabeling

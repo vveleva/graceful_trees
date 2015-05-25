@@ -78,11 +78,12 @@ class Tree
 
   def render(options = {})
     graph_label = options[:label] || ""
-    filename = options[:name] || "all_#{self.nodes.length}v_trees"
+    filename    = options[:name]  || "all_#{self.nodes.length}v_trees"
 
     GraphViz.graph( :G ) do |graph|
       graphviz_data(graph, "")
       graph[:label] = graph_label
+      graph[:rankdir] = options[:rankdir] || :TB
       graph.output(png: "graph_images/#{filename}.png")
     end
   end
