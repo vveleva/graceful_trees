@@ -19,8 +19,8 @@ class Path < Tree
   end
 
   def render(options = {})
-    options[:name] ||= "path_#{vertices}v"
-    options[:label] ||= "\nGraceful labeling for path on #{vertices} vertices"
+    options[:name]  ||= "path_#{vertices}v"
+    options[:label] ||= "\n\nGraceful labeling for path on #{vertices} vertices"
     options[:rankdir] = :LR
     super(options)
   end

@@ -82,24 +82,24 @@ class Tree
 
     GraphViz.graph( :G ) do |graph|
       graphviz_data(graph, "")
-      graph[:label] = graph_label
+      graph[:label]   = graph_label
       graph[:rankdir] = options[:rankdir] || :TB
       graph.output(png: "graph_images/#{filename}.png")
     end
   end
 
   def label_nodes(labeling = [])
-    p labeling
-    p nodes
     if labeling.empty?
       nodes.each_with_index { |node, idx| node.label = idx }
     else
       raise ArgumentError.new(
-        "number of labels doesn't match the number of nodes"
+        "number of labels doesn't match number of nodes"
       ) unless nodes.count == labeling.length
 
       nodes.zip(labeling).each { |node, label| node.label = label }
     end
+
+    nil
   end
 
   def nodes
@@ -137,7 +137,7 @@ class Tree
   end
 
   def inspect
-    inspect_node root
+    inspect_node(root)
   end
 
   def inspect_node(node)

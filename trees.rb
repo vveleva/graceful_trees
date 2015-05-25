@@ -1,0 +1,7 @@
+require_relative 'tree'
+require_relative 'k_ary_tree'
+require_relative 'symmetric_star'
+require_relative 'firecracker_tree'
+require_relative 'star_tree'
+require_relative 'path_tree'
+require 'graph'

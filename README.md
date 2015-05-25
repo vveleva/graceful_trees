@@ -124,13 +124,16 @@ Example:
 ```ruby
 # this is a graceful labeling for a k_ary tree on 15 nodes
 labeling = [0, 7, 14, 11, 8, 4, 1, 2, 3, 5, 6, 9, 10, 12, 13]
-btree = K_aryTree.build(depth: 3, labeling: labeling)
+btree = K_aryTree.build(depth: 3, vdegree: 2, labeling: labeling)
 btree.render(name: "_graceful", label: "\nGraceful labeling")
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="graph_images/btree_depth_3_graceful.png" width="300">
 
-### K_ary Tree
+<img src="graph_images/2_tree_depth_4.png" width="500">
+
+<img src="graph_images/btree_depth_3.png">
+
 
 ### Firecracker Tree
 

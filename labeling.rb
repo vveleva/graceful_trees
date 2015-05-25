@@ -1,7 +1,11 @@
 module K_aryLabeling
 
-  def distinct_labelings(depth)
-    (0...2 ** (depth + 1) - 1).to_a.permutation.to_a
+  def distinct_labelings(depth, vdegree)
+    basic_labeling.to_a.permutation.to_a
+  end
+
+  def basic_labeling(depth, vdegree)
+    (0...(depth ** (vdegree + 1) - 1) / (vdegree - 1)).to_a
   end
 
   def graceful_btree_labelings(depth)
@@ -35,18 +39,18 @@ module FirecrackerLabeling
     labels = []
 
     k.times do |i|
-      label = i.even? ? i / 2 * m : (k - (i + 1) / 2) * m
+      label = i.even?  ?  i / 2 * m  :  (k - (i + 1) / 2) * m
       labels << label
     end
 
     k.times do |i|
-      label = i.even? ? (k - i / 2) * m - 1 : (i + 1) / 2 * m - 1
+      label = i.even?  ?  (k - i / 2) * m - 1  :  (i + 1) / 2 * m - 1
       labels << label
     end
 
     k.times do |i|
       (2...m).each do |j|
-        label = i.even? ? j + i / 2 * m - 1 : j + (k - (i + 1) / 2) * m - 1
+        label = i.even?  ?  j + i / 2 * m - 1  :  j + (k - (i + 1) / 2) * m - 1
         labels << label
       end
     end

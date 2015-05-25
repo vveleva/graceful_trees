@@ -34,10 +34,10 @@ class SymmetricStarLabeling
   generate_labels :vlabels, :elabels
 
   def vlabel(j, i)
-    i.even?  ?  n * (j - 1) + i / 2  :  n * (m - j) + (n - (i - 1) / 2)
+    i.even?   ?   n * (j - 1) + i / 2   :   n * (m - j) + (n - (i - 1) / 2)
   end
 
   def elabel(j, i)
-    i == 1  ?  n * (m - j + 1)  :  (n * (m - 2 * j + 2) - (i - 1)).abs
+    i == 1   ?   n * (m - j + 1)   :   (n * (m - 2 * j + 2) - (i - 1)).abs
   end
 end

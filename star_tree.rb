@@ -13,8 +13,8 @@ class Star < Tree
   end
 
   def render(options = {})
-    options[:name] ||= "star_#{vertices}v"
-    options[:label] ||= "\nGraceful #{vertices}-star labeling"
+    options[:name]  ||= "star_#{vertices}v"
+    options[:label] ||= "\n\nGraceful #{vertices}-star labeling"
     super(options)
   end
 

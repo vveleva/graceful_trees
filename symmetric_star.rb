@@ -1,6 +1,6 @@
 require_relative 'tree'
 require_relative 'symmetric_star_labeling'
-require 'colorize'
+# require 'colorize'
 
 
 # Theorem: All symmetric star trees are graceful.
@@ -11,8 +11,8 @@ class SymmetricStar < Tree
 
   def self.build(options)
     tree = SymmetricStar.new(options)
-    # labeling = SymmetricStarLabeling.new(tree.legs, tree.depth)
-    labeling = SymmetricStarLabeling.new(options[:legs], options[:depth])
+    labeling = SymmetricStarLabeling.new(tree.legs, tree.depth)
+    # labeling = SymmetricStarLabeling.new(options[:legs], options[:depth])
     labeling.vlabels.each do |labels|
       tree.root.children << SymmetricStar.build_path(labels)
     end
@@ -24,11 +24,10 @@ class SymmetricStar < Tree
     p "already labeled on ::build"
   end
 
-  def render
-    super(
-      label: "\nGraceful labeling",
-      name: "#{legs}#{depth}_symmetric_star"
-    )
+  def render(options = {})
+    options[:name]  ||= "#{legs}#{depth}_symmetric_star"
+    options[:label] ||= "\n\nGraceful labeling"
+    super(options)
   end
 
   def self.build_path(labels)

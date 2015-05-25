@@ -1,9 +1,4 @@
-require_relative 'tree'
-require_relative 'star_tree'
-require_relative 'path_tree'
-require_relative 'symmetric_star'
-require_relative 'labeling'
-require 'graph'
+require_relative 'trees'
 
 
 # Definition: A firecracker F is a tree consisting of a path P(F) and a
@@ -45,8 +40,8 @@ class Firecracker < Tree
   end
 
   def render(options = {})
-    options[:name] ||= "firecracker_#{path_length}#{star_vertices}"
-    options[:label] ||= "\nGraceful F(#{path_length}, #{star_vertices}) labeling"
+    options[:name]  ||= "firecracker_#{path_length}#{star_vertices}"
+    options[:label] ||= "Graceful F(#{path_length}, #{star_vertices}) labeling"
     super(options)
   end
 
