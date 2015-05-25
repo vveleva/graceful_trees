@@ -1,5 +1,12 @@
 # Documentation
 
+- Tree
+- Path
+- Star
+- Symmetric Star
+- [Firecracker Tree](firecracker_tree)
+- Binary Tree
+
 ### Symmetric Star Labeling
 
 ##### `#vlables`
@@ -137,7 +144,7 @@ btree.render(name: "_graceful", label: "\nGraceful labeling")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="graph_images/btree_depth_3_graceful.png" width="300">
 
 
-### Firecracker Tree
+### Firecracker Tree [firecracker_tree]
 
 ##### `::build(options)`
 
