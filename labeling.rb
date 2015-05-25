@@ -31,31 +31,22 @@ module FirecrackerLabeling
   def graceful_labeling(options)
     k = options[:path_length]
     m = options[:star_vertices] + 1
-
     labels = []
+
     k.times do |i|
-      if i.even?
-        labels << i / 2 * m + 1
-      else
-        labels << 1 + (k - (i + 1) / 2) * m
-      end
+      label = i.even? ? i / 2 * m : (k - (i + 1) / 2) * m
+      labels << label
     end
 
     k.times do |i|
-      if i.even?
-        labels << (k - i / 2) * m
-      else
-        labels << (i + 1) / 2 * m
-      end
+      label = i.even? ? (k - i / 2) * m - 1 : (i + 1) / 2 * m - 1
+      labels << label
     end
 
     k.times do |i|
       (2...m).each do |j|
-        if i.even?
-          labels << j + i / 2 * m
-        else
-          labels << j + (k - (i + 1) / 2) * m
-        end
+        label = i.even? ? j + i / 2 * m - 1 : j + (k - (i + 1) / 2) * m - 1
+        labels << label
       end
     end
 
