@@ -67,7 +67,7 @@ star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;
-<img src="graph_images/73_symmetric_star.png" width="300">
+<img src="graph_images/73_symmetric_star.png" width="500">
 
 
 ### Tree
@@ -105,7 +105,7 @@ All graceful labelings of all trees on 4 vertices
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="graph_images/4v_all.png" width="200">
+<img src="graph_images/4v_all.png" width="400">
 
 All graceful labelings of all trees on 5 vertices
 
@@ -119,7 +119,7 @@ All graceful labelings of all trees on 5 vertices
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="graph_images/path_8v.png" width="500">
+<img src="graph_images/path_8v.png" width="700">
 
 ### Star Tree
 
@@ -130,7 +130,7 @@ All graceful labelings of all trees on 5 vertices
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="graph_images/star_8v.png" width="300">
+<img src="graph_images/star_8v.png" width="460">
 
 ### K_ary Tree
 
@@ -146,11 +146,11 @@ btree.render(name: "_graceful", label: "\nGraceful labeling")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="graph_images/btree_depth_3_graceful.png" width="300">
+<img src="graph_images/btree_depth_3_graceful.png" width="500">
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="graph_images/2_tree_depth_4.png" width="500">
+<img src="graph_images/2_tree_depth_4.png" width="600">
 
 <img src="graph_images/btree_depth_3.png">
 
@@ -169,12 +169,9 @@ firecracker.render
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-<img src="graph_images/firecracker_45.png" width="300">
+<img src="graph_images/firecracker_43.png" height="450">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-<img src="graph_images/firecracker_43.png" height="360">
-
+<img src="graph_images/firecracker_45.png" height="450">
 
 [4v_all]: ./graph_images/4v_all.png
 [5v_all]: ./graph_images/5v_all.png
