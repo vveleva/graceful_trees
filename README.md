@@ -105,7 +105,7 @@ All graceful labelings of all trees on 4 vertices
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="graph_images/4v_all.png" width="400">
+<img src="graph_images/4v_all.png" width="350">
 
 All graceful labelings of all trees on 5 vertices
 
@@ -169,9 +169,9 @@ firecracker.render
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="graph_images/firecracker_43.png" height="450">
+<img src="graph_images/firecracker_43.png" height="500">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="graph_images/firecracker_45.png" height="450">
+<img src="graph_images/firecracker_45.png" height="500">
 
 [4v_all]: ./graph_images/4v_all.png
 [5v_all]: ./graph_images/5v_all.png
