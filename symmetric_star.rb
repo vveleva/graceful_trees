@@ -1,5 +1,7 @@
-require_relative 'tree'
-require_relative 'symmetric_star_labeling'
+require './tree.rb'
+require './Node.rb'
+require './path_tree.rb'
+require './symmetric_star_labeling.rb'
 # require 'colorize'
 
 
@@ -7,43 +9,40 @@ require_relative 'symmetric_star_labeling'
 
 
 class SymmetricStar < Tree
-  attr_reader :legs, :depth
 
-  def self.build(options)
-    tree = SymmetricStar.new(options)
-    labeling = SymmetricStarLabeling.new(tree.legs, tree.depth)
-    # labeling = SymmetricStarLabeling.new(options[:legs], options[:depth])
-    labeling.vlabels.each do |labels|
-      tree.root.children << SymmetricStar.build_path(labels)
+  class << self
+    def build(root: Node.new, legs:, depth:)
+      star = SymmetricStar.new(root: root, legs: legs, depth: depth)
+      vlabels = SymmetricStarLabeling.new(star.legs, star.depth).vlabels
+      children = vlabels.map { |label| Path.build(nodes: labels.size, labels: labels).root }
+      star.root.children += children
+
+      star
     end
 
-    tree
+    def render(root: Node.new, legs:, depth:, name: nil, label: nil)
+      star = SymmetricStar.build(root: root, legs: legs, depth: depth)
+      star.render(name: name, label: label)
+
+      star
+    end
+  end
+
+  attr_reader :legs, :depth
+
+  def initialize(root:, legs:, depth:)
+    @root = root
+    @legs  = legs
+    @depth = depth
   end
 
   def label_nodes
     p "already labeled on ::build"
   end
 
-  def render(options = {})
-    options[:name]  ||= "#{legs}#{depth}_symmetric_star"
-    options[:label] ||= "\n\nGraceful labeling"
-    super(options)
-  end
-
-  def self.build_path(labels)
-    parent = start_node = Node.new(label: labels.shift)
-    labels.each do |label|
-      temp = Node.new(label: label)
-      parent.children << temp
-      parent = temp
-    end
-
-    start_node
-  end
-
-  def initialize(options)
-    super(options)
-    @legs  = options[:legs]
-    @depth = options[:depth]
+  def render(name: nil, label: nil)
+    name ||= "#{legs}#{depth}_symmetric_star"
+    label ||= "\n\nGraceful labeling"
+    super(name: name, label: label)
   end
 end

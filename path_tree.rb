@@ -3,20 +3,32 @@ require './Node.rb'
 
 
 class Path < Tree
-  attr_reader :nodes
+  class << self
+    def build(root: Node.new, nodes: [], labels: nil)
+      labels ||= graceful_labeling(nodes: nodes)
+      path = Path.new(root: root, nodes: nodes)
+      path.root.label = labels.shift
+      parent = path.root
+      labels.each do |label|
+        temp = Node.new(label: label)
+        parent.children << temp
+        parent = temp
+      end
 
-  def self.build(options)
-    labels = self.class.graceful_labeling(nodes:noptions[:nodes])
-    path = Path.new(options)
-    path.root.label = labels.shift
-    parent = path.root
-    labels.each do |label|
-      temp = Node.new(label: label)
-      parent.children << temp
-      parent = temp
+      path
     end
 
-    path
+    def graceful_labeling(nodes:)
+      labels = (0...nodes).to_a
+      labels.take(labels.length / 2).zip(labels.reverse).flatten
+    end
+  end
+
+  attr_reader :nodes
+
+  def initialize(root:, nodes:)
+    @root = root
+    @nodes = nodes
   end
 
   def render(name: nil, label: nil)
@@ -25,13 +37,4 @@ class Path < Tree
     super(name: name, label: label, rankdir: :LR)
   end
 
-  def self.graceful_labeling(nodes:)
-    labels = (0...nodes).to_a
-    labels.take(labels.length / 2).zip(labels.reverse).flatten
-  end
-
-  def initialize(root: Node.new, nodes: [])
-    @root = root
-    @nodes = nodes
-  end
 end
