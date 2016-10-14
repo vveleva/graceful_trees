@@ -114,7 +114,7 @@ All graceful labelings of all trees on 5 vertices
 ### Path Tree
 
 ##### `::build(options)`
-- `vertices` - number of total nodes
+- `nodes` - number of total nodes
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -123,7 +123,7 @@ All graceful labelings of all trees on 5 vertices
 ### Star Tree
 
 ##### `::build(options)`
-- `vertices` - number of total nodes
+- `nodes` - number of total nodes
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -157,12 +157,12 @@ btree.render(name: "_graceful", label: "\nGraceful labeling")
 
 ##### `::build(options)`
 - `path_length` - length of main path
-- `star_vertices` - number of nodes in each star attached to each node of the path
+- `star_nodes` - number of nodes in each star attached to each node of the path
 
 Example:
 
 ```ruby
-firecracker = Firecracker.build(path_length: 4, star_vertices: 3)
+firecracker = Firecracker.build(path_length: 4, star_nodes: 3)
 firecracker.render
 ```
 

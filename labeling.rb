@@ -35,7 +35,7 @@ module FirecrackerLabeling
   def graceful_labeling(options)
     k = options[:path_length]
     k = k.odd? ? k - 1 : k
-    m = options[:star_vertices]
+    m = options[:star_nodes]
     labels = []
 
     k.times do |i|
