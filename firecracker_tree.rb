@@ -1,4 +1,5 @@
-require_relative 'trees'
+require './trees'
+require './FirecrackerLabeling'
 
 
 # Definition: A firecracker F is a tree consisting of a path P(F) and a
@@ -9,7 +10,6 @@ require_relative 'trees'
 
 
 class Firecracker < Tree
-  extend FirecrackerLabeling
 
   attr_reader :star_nodes, :path_length, :path_nodes
 
@@ -21,7 +21,7 @@ class Firecracker < Tree
     tree.nodes.each do |node|
       node.children << Star.build(nodes: tree.star_nodes - 1).root
     end
-    tree.label_nodes(Firecracker.graceful_labeling(options))
+    tree.label_nodes(FirecrackerLabeling.graceful_labeling(options))
 
     tree
   end

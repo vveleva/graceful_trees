@@ -1,7 +1,7 @@
 require_relative 'labeling'
 require 'graph'
 require 'graphviz'
-require 'graphviz/dsl'
+# require 'graphviz/dsl'
 
 
 class Tree
