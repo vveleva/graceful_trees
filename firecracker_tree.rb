@@ -1,5 +1,6 @@
-require './trees'
-require './FirecrackerLabeling'
+require './tree.rb'
+require './Node.rb'
+require './FirecrackerLabeling.rb'
 
 
 # Definition: A firecracker F is a tree consisting of a path P(F) and a
@@ -13,15 +14,27 @@ class Firecracker < Tree
 
   attr_reader :star_nodes, :path_length, :path_nodes
 
-  def self.build(options)
-    path = Path.build(nodes: options[:path_length])
-    options[:path_nodes] = path.nodes
-    tree = Firecracker.new(options)
+  def initialize(root: Node.new, star_nodes:, path_nodes:, path_length:)
+    @root = root
+    @star_nodes = star_nodes
+    @path_length = path_length
+    @path_nodes = path_nodes
+  end
+
+  def self.build(path_length:, star_length:)
+    path = Path.build(nodes: path_length)
+    tree = Firecracker.new(
+      path_nodes: path.nodes,
+      path_length: path_length,
+      star_length: star_length
+    )
     tree.root = path.root
     tree.nodes.each do |node|
       node.children << Star.build(nodes: tree.star_nodes - 1).root
     end
-    tree.label_nodes(FirecrackerLabeling.graceful_labeling(options))
+    tree.label_nodes(
+      FirecrackerLabeling.graceful_labeling(star_length: star_length, path_length: path_length)
+    )
 
     tree
   end
@@ -39,16 +52,9 @@ class Firecracker < Tree
     nodes
   end
 
-  def render(options = {})
-    options[:name]  ||= "firecracker_#{path_length}#{star_nodes}"
-    options[:label] ||= "Graceful F(#{path_length}, #{star_nodes}) labeling"
-    super(options)
-  end
-
-  def initialize(options)
-    super(options)
-    @star_nodes = options[:star_nodes]
-    @path_length   = options[:path_length]
-    @path_nodes    = options[:path_nodes]
+  def render(name: nil, label: nil)
+    name  ||= "firecracker_#{path_length}#{star_nodes}"
+    label ||= "Graceful F(#{path_length}, #{star_nodes}) labeling"
+    super(name: name, label: label)
   end
 end

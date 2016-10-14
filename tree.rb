@@ -2,6 +2,7 @@ require_relative 'labeling'
 require 'graph'
 require 'graphviz'
 # require 'graphviz/dsl'
+require './Node.rb'
 
 
 class Tree
@@ -71,18 +72,13 @@ class Tree
     end
   end
 
-  def initialize(options)
-    @root = options[:root] || Node.new
-  end
+  def render(name: nil, label: '', rankdir: :TB)
+    filename = name || "all_#{self.nodes.length}v_trees"
 
-  def render(options = {})
-    graph_label = options[:label] || ""
-    filename    = options[:name]  || "all_#{self.nodes.length}v_trees"
-
-    GraphViz.graph( :G ) do |graph|
+    GraphViz.graph(:G) do |graph|
       graphviz_data(graph, "")
-      graph[:label]   = graph_label
-      graph[:rankdir] = options[:rankdir] || :TB
+      graph[:label]   = label
+      graph[:rankdir] = rankdir
       graph.output(png: "graph_images/#{filename}.png")
     end
   end
@@ -163,24 +159,6 @@ class Tree
     self.edges.each do |i, j|
       graph.add_edges("#{n}.#{i}", "#{n}.#{j}", label: " #{(i - j).abs}")
     end
-  end
-end
-
-
-class Node
-  attr_accessor :children, :label
-
-  def initialize(options = {})
-    @children = options[:children] || []
-    @label = options[:label] || 0
-  end
-
-  def dup
-    Node.new(children: children.map(&:dup))
-  end
-
-  def inspect
-    label
   end
 end
 

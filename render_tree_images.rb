@@ -21,7 +21,7 @@ require_relative 'trees'
 #
 # Path.build(nodes: 8).render
 #
-# Firecracker.build(path_length: 4, star_nodes: 3).render
+# Firecracker.build(path_length: 4, star_length: 3).render
 
 # depth, vdegree = 3, 3
 # labeling = (0...(depth ** (vdegree + 1) - 1) / (vdegree - 1)).to_a

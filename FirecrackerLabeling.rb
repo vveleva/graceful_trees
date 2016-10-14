@@ -1,9 +1,9 @@
 module FirecrackerLabeling
 
-  def graceful_labeling(options)
-    k = options[:path_length]
+  def graceful_labeling(star_length:, path_length:)
+    k = path_length
     k = k.odd? ? k - 1 : k
-    m = options[:star_nodes]
+    m = star_length
     labels = []
 
     k.times do |i|

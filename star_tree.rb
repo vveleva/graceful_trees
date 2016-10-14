@@ -1,4 +1,5 @@
-require_relative 'tree'
+require './tree.rb'
+require './Node.rb'
 
 class Star < Tree
 
@@ -18,9 +19,8 @@ class Star < Tree
     super(options)
   end
 
-  def initialize(options)
-    super(options)
-    @nodes = options[:nodes]
+  def initialize(root: Node.new, nodes: [])
+    @root = root
+    @nodes = nodes
   end
-
 end

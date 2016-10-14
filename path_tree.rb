@@ -1,11 +1,12 @@
-require_relative 'tree'
+require './tree.rb'
+require './Node.rb'
 
 
 class Path < Tree
   attr_reader :nodes
 
   def self.build(options)
-    labels = self.class.graceful_labeling(options[:nodes])
+    labels = self.class.graceful_labeling(nodes:noptions[:nodes])
     path = Path.new(options)
     path.root.label = labels.shift
     parent = path.root
@@ -18,20 +19,19 @@ class Path < Tree
     path
   end
 
-  def render(options = {})
-    options[:name]  ||= "path_#{nodes}v"
-    options[:label] ||= "\n\nGraceful labeling for path on #{nodes} vertices"
-    options[:rankdir] = :LR
-    super(options)
+  def render(name: nil, label: nil)
+    name ||= "path_#{nodes}v"
+    label ||= "\n\nGraceful labeling for path on #{nodes} vertices"
+    super(name: name, label: label, rankdir: :LR)
   end
 
-  def self.graceful_labeling(nodes)
+  def self.graceful_labeling(nodes:)
     labels = (0...nodes).to_a
     labels.take(labels.length / 2).zip(labels.reverse).flatten
   end
 
-  def initialize(options)
-    super(options)
-    @nodes = options[:nodes]
+  def initialize(root: Node.new, nodes: [])
+    @root = root
+    @nodes = nodes
   end
 end

@@ -1,4 +1,5 @@
-require_relative 'tree'
+require './tree.rb'
+require './Node.rb'
 
 
 # Definition:
@@ -10,8 +11,8 @@ class OliveTree < Tree
 
   attr_reader :depth
 
-  def initialize(options)
-    super(options)
-    @depth = options[:depth]
+  def initialize(root: Node.new, depth:)
+    @root = root
+    @depth = depth
   end
 end
