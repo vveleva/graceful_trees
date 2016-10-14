@@ -8,10 +8,10 @@ require_relative 'trees'
 
 # size = 3
 # labelings = Tree.distinct_labelings(size)
-# Tree.render_graceful_trees(size, labelings)
+# Tree.render_graceful_trees(nodes: size, labelings: labelings)
 
 
-# Tree.render_all_trees(4)
+# Tree.render_all_trees(nodes: 4)
 
 # SymmetricStar.build(legs: 6, depth: 3).render
 #

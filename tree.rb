@@ -5,16 +5,15 @@ require 'graphviz/dsl'
 
 
 class Tree
-  extend Labeling
 
   attr_accessor :root
 
-  def self.build_trees(n)
+  def self.build_trees(nodes:)
     root_nodes = []
-    if n == 1
+    if nodes == 1
       root_nodes << Node.new
     else
-      (n - 1).partitions.each do |partition|
+      (nodes - 1).partitions.each do |partition|
         root_nodes += Tree.partition_nodes(partition) unless partition.empty?
       end
     end
@@ -22,21 +21,21 @@ class Tree
     root_nodes.map { |node| Tree.new(root: node) }
   end
 
-  def self.render_all_trees(n)
+  def self.render_all_trees(nodes:)
     GraphViz.graph( :G ) do |graph|
-      trees = Tree.build_trees(n)
+      trees = Tree.build_trees(nodes: nodes)
       trees.each_with_index do |tree, i|
-        tree.label_nodes((0...n).to_a)
+        tree.label_nodes((0...nodes).to_a)
         tree.graphviz_data(graph, "#{i}")
       end
 
-      graph.output png: "graph_images/all_#{n}v_trees.png"
+      graph.output png: "graph_images/all_#{nodes}v_trees.png"
     end
   end
 
-  def self.render_graceful_trees(n, labelings)
+  def self.render_graceful_trees(nodes:, labelings:)
     GraphViz.graph( :G ) do |graph|
-      trees = Tree.build_trees(n)
+      trees = Tree.build_trees(nodes: nodes)
       trees.each_with_index do |tree, j|
         labelings.each_with_index do |labeling, i|
           tree.label_nodes(labeling)
@@ -44,14 +43,14 @@ class Tree
         end
       end
 
-      graph.output png: "graph_images/all_#{n}v_graceful_trees.png"
+      graph.output png: "graph_images/all_#{nodes}v_graceful_trees.png"
     end
   end
 
   def self.partition_nodes(partition)
     root_nodes = [Node.new]
     partition.each do |num_sub_nodes|
-      sub_trees = Tree.build_trees(num_sub_nodes)
+      sub_trees = Tree.build_trees(nodes: num_sub_nodes)
       new_subrootnodes = []
 
       sub_trees.each do |sub_tree|

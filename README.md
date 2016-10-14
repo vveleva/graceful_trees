@@ -79,10 +79,10 @@ star.render #=> outputs png file with gracefully labeled (7, 3)-symmetric star
 - `name` - a string that will be appended to the name of the outputted png
 - `label` - a string that appears below the graph in the outputted png
 
-##### `::render_all_trees(size)`
+##### `::render_all_trees(nodes: size)`
 - `size` - total number of nodes in each tree
 
-##### `::render_graceful_trees(size, labelings)`
+##### `::render_graceful_trees(nodes: size, labelings: labelings)`
 - `size` - total number of nodes in each tree
 - `labelings` - an array of potential graceful labelings (each of which is also an array)
 
@@ -90,11 +90,11 @@ Example:
 
 ```ruby
 # outputs a png with all trees on 4 vertices
-Tree.render_all_trees(4)
+Tree.render_all_trees(nodes: 4)
 
 # outpits a png with all graceful labelings of all trees on 4 vertices
 labelings = (0..4).to_a.permutation.to_a
-Tree.render_graceful_trees(4, labelings)
+Tree.render_graceful_trees(nodes: 4, labelings: labelings)
 ```
 
 All graceful labelings of all trees on 4 vertices
